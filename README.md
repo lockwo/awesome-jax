@@ -7,6 +7,8 @@
 
 This is a curated list of awesome JAX libraries, projects, and other resources. Contributions are welcome!
 
+Be sure to check out our interactive web version: https://lockwo.github.io/awesome-jax/.
+
 This is based on the no longer active Awesome JAX repos https://github.com/n2cholas/awesome-jax/ and https://github.com/mhlr/awesome-jax.
 
 ## Contents
