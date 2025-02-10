@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Interactive Software Table</title>
+
+  <link 
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/darkly/bootstrap.min.css"
+  />
+
+  <link 
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+  />
+  <link 
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"
+  />
+
+  <style>
+    body {
+      background-color: #24242f;
+      color: #d4d4f0;
+      margin: 1rem;
+    }
+    h1 {
+      color: #c6c6ff;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    table thead th {
+      background-color: #3b3b61 !important;
+    }
+    .dependencies a {
+      margin-right: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      color: #d4d4ff;
+      padding: 3px 8px;
+      border: 1px solid #5c5c8a;
+      border-radius: 3px;
+      transition: background-color 0.2s;
+    }
+    .dependencies a:hover {
+      background-color: #5c5c8a;
+      color: #ffffff;
+    }
+
+    .inactive-row {
+      opacity: 0.7; 
+    }
+
+    .filtered-dep {
+      background-color: #5c5c8a !important;
+      color: #ffffff !important;
+    }
+    .active-dep {
+      background-color: #5c5c8a !important;
+      color: #ffffff !important;
+    }
+
+    .dataTables_filter input[type="search"] {
+        color: #ff4d4d !important;
+        background-color: #2e2e3e !important;
+    }
+    .dataTables_length select {
+      background-color: #2e2e3e;
+      color: #ff4d4d;
+      border: 1px solid #5c5c8a;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>JAX Libraries</h1>
+
+  <div class="container">
+    <div class="mb-3">
+      <button id="clearTypeFilter" class="btn btn-secondary">
+        Clear Type Filter
+      </button>
+      <button id="clearDependencyFilter" class="btn btn-secondary">
+        Clear Dependency Filter
+      </button>
+      <button id="clearStatusFilter" class="btn btn-secondary">
+        Clear Status Filter
+      </button>
+    </div>
+
+    <table id="softwareTable" class="table table-striped table-hover" style="width:100%">
+      <thead>
+        <tr>
+          <th>Software Name</th>
+          <th>
+            <div class="d-flex align-items-center">
+              <span style="margin-right: 8px;">Type</span>
+              <div class="btn-group">
+                <button 
+                  type="button"
+                  class="btn btn-sm btn-outline-info dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Filter
+                </button>
+                <ul class="dropdown-menu" id="typeDropdown">
+                </ul>
+              </div>
+            </div>
+          </th>
+          <th>Repo</th>
+          <th>Stars</th>
+          <th>
+            <div class="d-flex align-items-center">
+              <span style="margin-right: 8px;">Dependencies</span>
+              <div class="btn-group">
+                <button 
+                  type="button"
+                  class="btn btn-sm btn-outline-info dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Filter
+                </button>
+                <ul class="dropdown-menu" id="dependenciesDropdown">
+                </ul>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="d-flex align-items-center">
+              <span style="margin-right: 8px;">Status</span>
+              <div class="btn-group">
+                <button 
+                  type="button"
+                  class="btn btn-sm btn-outline-info dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Filter
+                </button>
+                <ul class="dropdown-menu" id="statusDropdown">
+                </ul>
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+  <script 
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    crossorigin="anonymous">
+  </script>
+
+  <script 
+    src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js">
+  </script>
+  <script 
+    src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js">
+  </script>
+
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+
+  <script src="data.js"></script>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
