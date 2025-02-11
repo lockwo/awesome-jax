@@ -31,6 +31,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
         - [cleanrl](https://github.com/vwxyzjn/cleanrl) - High-quality single file implementation of Deep Reinforcement Learning algorithms with research-friendly features (PPO, DQN, C51, DDPG, TD3, SAC, PPG). <img src="https://img.shields.io/github/stars/vwxyzjn/cleanrl?style=social" align="center">
         - [rlax](https://github.com/google-deepmind/rlax) - a library built on top of JAX that exposes useful building blocks for implementing reinforcement learning agents. <img src="https://img.shields.io/github/stars/google-deepmind/rlax?style=social" align="center">
         - [purejaxrl](https://github.com/luchris429/purejaxrl) - Really Fast End-to-End Jax RL Implementations. <img src="https://img.shields.io/github/stars/luchris429/purejaxrl?style=social" align="center">
+        - [Mava](https://github.com/instadeepai/Mava) - 🦁 A research-friendly codebase for fast experimentation of multi-agent reinforcement learning in JAX. <img src="https://img.shields.io/github/stars/instadeepai/Mava?style=social" align="center">
     - Environments
         - [pgx](https://github.com/sotetsuk/pgx) - Vectorized RL game environments in JAX. <img src="https://img.shields.io/github/stars/sotetsuk/pgx?style=social" align="center">
         - [jumanji](https://github.com/instadeepai/jumanji) - 🕹️ A diverse suite of scalable reinforcement learning environments in JAX. <img src="https://img.shields.io/github/stars/instadeepai/jumanji?style=social" align="center">
@@ -50,6 +51,8 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
     - [mpi4jax](https://github.com/mpi4jax/mpi4jax) - Zero-copy MPI communication of JAX arrays, for turbo-charged HPC applications in Python ⚡. <img src="https://img.shields.io/github/stars/mpi4jax/mpi4jax?style=social" align="center">
     - [jax-tqdm](https://github.com/jeremiecoullon/jax-tqdm) - Add a tqdm progress bar to your JAX scans and loops. <img src="https://img.shields.io/github/stars/jeremiecoullon/jax-tqdm?style=social" align="center">
     - [JAX-Toolbox](https://github.com/NVIDIA/JAX-Toolbox) - JAX Toolbox provides a public CI, Docker images for popular JAX libraries, and optimized JAX examples to simplify and enhance your JAX development experience on NVIDIA GPUs. <img src="https://img.shields.io/github/stars/NVIDIA/JAX-Toolbox?style=social" align="center">
+    - [penzai](https://github.com/google-deepmind/penzai) - A JAX research toolkit for building, editing, and visualizing neural networks. <img src="https://img.shields.io/github/stars/google-deepmind/penzai?style=social" align="center">
+    - [orbax](https://github.com/google/orbax) - Orbax provides common checkpointing and persistence utilities for JAX users. <img src="https://img.shields.io/github/stars/google/orbax?style=social" align="center">
 
 
 - Computer Vision Libraries
@@ -97,7 +100,9 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [econpizza](https://github.com/gboehl/econpizza) - Solve nonlinear heterogeneous agent models. <img src="https://img.shields.io/github/stars/gboehl/econpizza?style=social" align="center">
 - [fedjax](https://github.com/google/fedjax) - FedJAX is a JAX-based open source library for Federated Learning simulations that emphasizes ease-of-use in research. <img src="https://img.shields.io/github/stars/google/fedjax?style=social" align="center">
 - [neural-tangents](https://github.com/google/neural-tangents) - Fast and Easy Infinite Neural Networks in Python. <img src="https://img.shields.io/github/stars/google/neural-tangents?style=social" align="center">
-
+- [jax-fem](https://github.com/deepmodeling/jax-fem) - Differentiable Finite Element Method with JAX. <img src="https://img.shields.io/github/stars/deepmodeling/jax-fem?style=social" align="center">
+- [veros](https://github.com/team-ocean/veros) - The versatile ocean simulator, in pure Python, powered by JAX. <img src="https://img.shields.io/github/stars/team-ocean/veros?style=social" align="center">
+- [JAXFLUIDS](https://github.com/tumaer/JAXFLUIDS) - Differentiable Fluid Dynamics Package.  <img src="https://img.shields.io/github/stars/tumaer/JAXFLUIDS?style=social" align="center">
 
 
 ### Up and Coming Libraries
@@ -131,10 +136,11 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [jax-resnet](https://github.com/n2cholas/jax-resnet/) - Implementations and checkpoints for ResNet, Wide ResNet, ResNeXt, ResNet-D, and ResNeSt in JAX (Flax). <img src="https://img.shields.io/github/stars/n2cholas/jax-resnet?style=social" align="center">
 - [elegy](https://github.com/poets-ai/elegy/) - A High Level API for Deep Learning in JAX. <img src="https://img.shields.io/github/stars/poets-ai/elegy?style=social" align="center">
 - [objax](https://github.com/google/objax) - Objax is an open source machine learning framework that accelerates research and learning thanks to a minimalist object-oriented design and a readable code base. <img src="https://img.shields.io/github/stars/google/objax?style=social" align="center">
-
+- [jaxrl](https://github.com/ikostrikov/jaxrl) - JAX (Flax) implementation of algorithms for Deep Reinforcement Learning with continuous action spaces. <img src="https://img.shields.io/github/stars/ikostrikov/jaxrl?style=social" align="center">
 
 ## Models and Projects
 
+- [whisper-jax](https://github.com/sanchit-gandhi/whisper-jax) - JAX implementation of OpenAI's Whisper model for up to 70x speed-up on TPU. <img src="https://img.shields.io/github/stars/sanchit-gandhi/whisper-jax?style=social" align="center">
 - [esm2quinox](https://github.com/patrick-kidger/esm2quinox) - An implementation of ESM2 in Equinox+JAX. <img src="https://img.shields.io/github/stars/patrick-kidger/esm2quinox?style=social" align="center">
 
 ## Tutorials and Blog Posts

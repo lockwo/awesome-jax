@@ -1,4 +1,5 @@
 // many of the stars are incorrect, need to pull live w/ auth see `main.js`
+// TODO: get rid of the data as well, just parse the readme and render it
 const softwareData = [
   {
     name: "Flax",
@@ -472,8 +473,6 @@ const softwareData = [
     dependencies: ["dynamax"],
     status: "Active",
   },
-
-  // Inactive Libraries
   {
     name: "Haiku",
     type: "Neural Network",
