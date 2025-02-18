@@ -164,6 +164,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 
 ### Videos
 
+- [The State of the JAX Ecosystem in 2025](https://www.youtube.com/watch?v=TzULI2PomIw)
 - [NeurIPS 2020: JAX Ecosystem Meetup](https://www.youtube.com/watch?v=iDxJxIyzSiM)
 - [Introduction to JAX](https://www.youtube.com/watch?v=0mVmRHMaOJ4)
 - [JAX: Accelerated Machine Learning Research | SciPy 2020 | VanderPlas](https://www.youtube.com/watch?v=z-WSrQDXkuM)
