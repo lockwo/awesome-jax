@@ -133,6 +133,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [cd_dynamax](https://github.com/hd-UQ/cd_dynamax) - Extension of dynamax repo to cases with continuous-time dynamics with measurements sampled at possibly irregular discrete times. Allows generic inference of dynamical systems parameters from partial noisy observations via auto-differentiable filtering, SGD, and HMC. <img src="https://img.shields.io/github/stars/hd-UQ/cd_dynamax?style=social" align="center">
 - [jumpax](https://github.com/lockwo/jumpax) - Jump Processes in JAX. <img src="https://img.shields.io/github/stars/lockwo/jumpax?style=social" align="center">
 - [driftax](https://github.com/wrkhard/driftax) - Drifting Generative Models - JAX/Flax implmentation of [Generative Modeling via Drifting](https://arxiv.org/abs/2602.04770). <img src="https://img.shields.io/github/stars/wrkhard/driftax?style=social" align="center">
+- [ParamRF](https://github.com/paramrf/paramrf) - Parametric Radio Frequency Modelling, Fitting and Sampling. <img src="https://img.shields.io/github/stars/mancusolab/traceax?style=social" align="center">
 
 
 
