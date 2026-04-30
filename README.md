@@ -134,7 +134,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [jumpax](https://github.com/lockwo/jumpax) - Jump Processes in JAX. <img src="https://img.shields.io/github/stars/lockwo/jumpax?style=social" align="center">
 - [driftax](https://github.com/wrkhard/driftax) - Drifting Generative Models - JAX/Flax implmentation of [Generative Modeling via Drifting](https://arxiv.org/abs/2602.04770). <img src="https://img.shields.io/github/stars/wrkhard/driftax?style=social" align="center">
 - [ParamRF](https://github.com/paramrf/paramrf) - Parametric Radio Frequency Modelling, Fitting and Sampling. <img src="https://img.shields.io/github/stars/mancusolab/traceax?style=social" align="center">
-- [Jaxpot](https://github.com/bards-ai/Jaxpot) - Scalable distributed RL framework for training PPO self-play agents on pgx-based environments in JAX. <img src="https://img.shields.io/github/stars/bards-ai/Jaxpot?style=social" align="center"> 
+- [Jaxpot](https://github.com/bards-ai/Jaxpot) - Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation. <img src="https://img.shields.io/github/stars/bards-ai/Jaxpot?style=social" align="center"> 
 
 
 
