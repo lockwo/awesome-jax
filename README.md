@@ -137,10 +137,12 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [graphax](https://github.com/jamielohoff/graphax) - Cross-Country Elimination in JAX. <img src="https://img.shields.io/github/stars/jamielohoff/graphax?style=social" align="center">
 - [cd_dynamax](https://github.com/hd-UQ/cd_dynamax) - Extension of dynamax repo to cases with continuous-time dynamics with measurements sampled at possibly irregular discrete times. Allows generic inference of dynamical systems parameters from partial noisy observations via auto-differentiable filtering, SGD, and HMC. <img src="https://img.shields.io/github/stars/hd-UQ/cd_dynamax?style=social" align="center">
 - [jumpax](https://github.com/lockwo/jumpax) - Jump Processes in JAX. <img src="https://img.shields.io/github/stars/lockwo/jumpax?style=social" align="center">
-- [driftax](https://https://github.com/wrkhard/driftax) - Drifting Generative Models - JAX/Flax implmentation of [Generative Modeling via Drifting](https://arxiv.org/abs/2602.04770). <img src="https://img.shields.io/github/stars/wrkhard/driftax?style=social" align="center">
+- [driftax](https://github.com/wrkhard/driftax) - Drifting Generative Models - JAX/Flax implmentation of [Generative Modeling via Drifting](https://arxiv.org/abs/2602.04770). <img src="https://img.shields.io/github/stars/wrkhard/driftax?style=social" align="center">
 - [parax](https://github.com/gvcallen/parax) - Parametric modeling in JAX. <img src="https://img.shields.io/github/stars/gvcallen/parax?style=social" align="center">
 - [mutax](https://github.com/gerlero/mutax) - SciPy-like differential evolution optimization in JAX. <img src="https://img.shields.io/github/stars/gerlero/mutax?style=social" align="center">
 - [diffraxtra](https://github.com/GalacticDynamics/diffraxtra) - Extras for Diffrax: OOP and vectorization. <img src="https://img.shields.io/github/stars/GalacticDynamics/diffraxtra?style=social" align="center">
+- [ParamRF](https://github.com/paramrf/paramrf) - Parametric Radio Frequency Modelling, Fitting and Sampling. <img src="https://img.shields.io/github/stars/mancusolab/traceax?style=social" align="center">
+- [Jaxpot](https://github.com/bards-ai/Jaxpot) - Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation. <img src="https://img.shields.io/github/stars/bards-ai/Jaxpot?style=social" align="center">
 
 
 ### Inactive Libraries
