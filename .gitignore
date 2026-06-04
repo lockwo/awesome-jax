@@ -2,3 +2,4 @@
 /docs/package*
 .DS_Store
 .github-cache.json
+.claude

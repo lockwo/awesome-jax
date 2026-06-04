@@ -1,6 +1,6 @@
-// Auto-generated from README.md
-// Last updated: 2026-02-25T07:14:35.905Z
-// Total libraries: 110
+// Auto-generated from README.md — do not edit by hand.
+// Last updated: 2026-06-04T23:02:48.376Z
+// Total libraries: 121
 
 const awesomeJaxData = [
   {
@@ -42,8 +42,8 @@ const awesomeJaxData = [
     "owner": "google-deepmind",
     "repo": "dm-haiku",
     "description": "JAX-based neural network library.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Neural Network Libraries",
+    "status": "inactive",
     "stars": 3190,
     "lastCommit": "2026-02-24T12:54:02Z"
   },
@@ -75,7 +75,7 @@ const awesomeJaxData = [
     "owner": "google-deepmind",
     "repo": "mctx",
     "description": "Monte Carlo tree search in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Reinforcement Learning Libraries",
     "status": "active",
     "stars": 2591,
     "lastCommit": "2025-09-02T07:52:49Z"
@@ -97,7 +97,7 @@ const awesomeJaxData = [
     "owner": "google",
     "repo": "neural-tangents",
     "description": "Fast and Easy Infinite Neural Networks in Python.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Neural Network Libraries",
     "status": "active",
     "stars": 2375,
     "lastCommit": "2024-03-01T17:16:56Z"
@@ -108,7 +108,7 @@ const awesomeJaxData = [
     "owner": "google-deepmind",
     "repo": "optax",
     "description": "Optax is a gradient processing and optimization library for JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Optimization Libraries",
     "status": "active",
     "stars": 2193,
     "lastCommit": "2026-02-24T09:25:55Z"
@@ -130,7 +130,7 @@ const awesomeJaxData = [
     "owner": "patrick-kidger",
     "repo": "diffrax",
     "description": "Numerical differential equation solvers in JAX. Autodifferentiable and GPU-capable.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Differential Equations and Solvers Libraries",
     "status": "active",
     "stars": 1913,
     "lastCommit": "2026-02-23T08:46:38Z"
@@ -163,8 +163,8 @@ const awesomeJaxData = [
     "owner": "google-deepmind",
     "repo": "jraph",
     "description": "A Graph Neural Network Library in Jax.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Graph Neural Network Libraries",
+    "status": "inactive",
     "stars": 1465,
     "lastCommit": "2022-08-31T13:13:15Z"
   },
@@ -185,7 +185,7 @@ const awesomeJaxData = [
     "owner": "jax-md",
     "repo": "jax-md",
     "description": "Differentiable, Hardware Accelerated, Molecular Dynamics.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Molecular Dynamics and Computational Biology Libraries",
     "status": "active",
     "stars": 1377,
     "lastCommit": "2026-01-23T00:30:32Z"
@@ -229,7 +229,7 @@ const awesomeJaxData = [
     "owner": "google",
     "repo": "evojax",
     "description": "EvoJAX is a scalable, general purpose, hardware-accelerated neuroevolution toolkit. Built on top of the JAX library, this toolkit enables neuroevolution algorithms to work with neural networks running in parallel across multiple TPU/GPUs.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Evolutionary and Population-Based Methods Libraries",
     "status": "active",
     "stars": 939,
     "lastCommit": "2024-06-27T07:26:43Z"
@@ -240,7 +240,7 @@ const awesomeJaxData = [
     "owner": "probml",
     "repo": "dynamax",
     "description": "State Space Models library in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Time Series, Filtering, and Signal Processing Libraries",
     "status": "active",
     "stars": 930,
     "lastCommit": "2026-01-06T01:13:21Z"
@@ -295,8 +295,8 @@ const awesomeJaxData = [
     "owner": "google",
     "repo": "objax",
     "description": "Objax is an open source machine learning framework that accelerates research and learning thanks to a minimalist object-oriented design and a readable code base.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Neural Network Libraries",
+    "status": "inactive",
     "stars": 774,
     "lastCommit": "2024-01-27T00:08:50Z"
   },
@@ -306,8 +306,8 @@ const awesomeJaxData = [
     "owner": "ikostrikov",
     "repo": "jaxrl",
     "description": "JAX (Flax) implementation of algorithms for Deep Reinforcement Learning with continuous action spaces.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Reinforcement Learning Libraries",
+    "status": "inactive",
     "stars": 751,
     "lastCommit": "2022-10-26T04:30:25Z"
   },
@@ -328,7 +328,7 @@ const awesomeJaxData = [
     "owner": "RobertTLange",
     "repo": "evosax",
     "description": "Evolution Strategies in JAX 🦎.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Evolutionary and Population-Based Methods Libraries",
     "status": "active",
     "stars": 729,
     "lastCommit": "2025-08-18T14:26:48Z"
@@ -339,7 +339,7 @@ const awesomeJaxData = [
     "owner": "ott-jax",
     "repo": "ott",
     "description": "Optimal transport tools implemented with the JAX framework, to get differentiable, parallel and jit-able computations.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Optimization Libraries",
     "status": "active",
     "stars": 700,
     "lastCommit": "2026-02-05T13:48:50Z"
@@ -372,7 +372,7 @@ const awesomeJaxData = [
     "owner": "thomaspinder",
     "repo": "GPJax",
     "description": "Gaussian processes in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Gaussian Processes Libraries",
     "status": "active",
     "stars": 593,
     "lastCommit": "2026-02-14T09:59:33Z"
@@ -394,7 +394,7 @@ const awesomeJaxData = [
     "owner": "deepmodeling",
     "repo": "jax-fem",
     "description": "Differentiable Finite Element Method with JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Physics and Simulation Libraries",
     "status": "active",
     "stars": 588,
     "lastCommit": "2026-02-08T09:39:21Z"
@@ -405,7 +405,7 @@ const awesomeJaxData = [
     "owner": "google",
     "repo": "paxml",
     "description": "Pax is a Jax-based machine learning framework for training large scale models. Pax allows for advanced and fully configurable experimentation and parallelization, and has demonstrated industry leading model flop utilization rates.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Neural Network Libraries",
     "status": "active",
     "stars": 548,
     "lastCommit": "2026-02-12T23:48:11Z"
@@ -416,7 +416,7 @@ const awesomeJaxData = [
     "owner": "patrick-kidger",
     "repo": "optimistix",
     "description": "Nonlinear optimisation (root-finding, least squares, etc.) in JAX+Equinox.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Optimization Libraries",
     "status": "active",
     "stars": 544,
     "lastCommit": "2026-02-16T13:07:02Z"
@@ -427,7 +427,7 @@ const awesomeJaxData = [
     "owner": "tumaer",
     "repo": "JAXFLUIDS",
     "description": "Differentiable Fluid Dynamics Package.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Physics and Simulation Libraries",
     "status": "active",
     "stars": 526,
     "lastCommit": "2026-01-29T13:08:45Z"
@@ -438,7 +438,7 @@ const awesomeJaxData = [
     "owner": "patrick-kidger",
     "repo": "lineax",
     "description": "Linear solvers in JAX and Equinox.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Numerical Methods and Linear Algebra Libraries",
     "status": "active",
     "stars": 518,
     "lastCommit": "2026-02-22T21:35:48Z"
@@ -460,7 +460,7 @@ const awesomeJaxData = [
     "owner": "wilson-labs",
     "repo": "cola",
     "description": "Compositional Linear Algebra.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Numerical Methods and Linear Algebra Libraries",
     "status": "active",
     "stars": 507,
     "lastCommit": "2025-03-14T22:37:46Z"
@@ -482,8 +482,8 @@ const awesomeJaxData = [
     "owner": "poets-ai",
     "repo": "elegy",
     "description": "A High Level API for Deep Learning in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Neural Network Libraries",
+    "status": "inactive",
     "stars": 476,
     "lastCommit": "2022-05-23T17:26:29Z"
   },
@@ -493,7 +493,7 @@ const awesomeJaxData = [
     "owner": "Autodesk",
     "repo": "XLB",
     "description": "XLB: Accelerated Lattice Boltzmann (XLB) for Physics-based ML.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Physics and Simulation Libraries",
     "status": "active",
     "stars": 442,
     "lastCommit": "2026-01-20T20:58:59Z"
@@ -537,7 +537,7 @@ const awesomeJaxData = [
     "owner": "team-ocean",
     "repo": "veros",
     "description": "The versatile ocean simulator, in pure Python, powered by JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Climate, Weather, and Ocean Libraries",
     "status": "active",
     "stars": 382,
     "lastCommit": "2026-02-23T13:04:17Z"
@@ -559,7 +559,7 @@ const awesomeJaxData = [
     "owner": "patrick-kidger",
     "repo": "sympy2jax",
     "description": "Turn SymPy expressions into trainable JAX expressions.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "JAX Utilities Libraries",
     "status": "active",
     "stars": 363,
     "lastCommit": "2026-02-04T22:22:12Z"
@@ -570,7 +570,7 @@ const awesomeJaxData = [
     "owner": "erfanzar",
     "repo": "EasyDeL",
     "description": "Accelerate, Optimize performance with streamlined training and serving options with JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Natural Language Processing Libraries",
     "status": "active",
     "stars": 339,
     "lastCommit": "2026-01-07T17:43:13Z"
@@ -581,7 +581,7 @@ const awesomeJaxData = [
     "owner": "adaptive-intelligent-robotics",
     "repo": "QDax",
     "description": "Accelerated Quality-Diversity.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Evolutionary and Population-Based Methods Libraries",
     "status": "active",
     "stars": 339,
     "lastCommit": "2025-10-30T09:19:48Z"
@@ -592,7 +592,7 @@ const awesomeJaxData = [
     "owner": "dfm",
     "repo": "tinygp",
     "description": "The tiniest of Gaussian Process libraries.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Gaussian Processes Libraries",
     "status": "active",
     "stars": 333,
     "lastCommit": "2026-02-08T20:49:02Z"
@@ -604,7 +604,7 @@ const awesomeJaxData = [
     "repo": "mcx",
     "description": "Express & compile probabilistic programs for performant inference on CPU & GPU. Powered by JAX.",
     "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "status": "inactive",
     "stars": 330,
     "lastCommit": "2021-08-01T20:03:41Z"
   },
@@ -625,7 +625,7 @@ const awesomeJaxData = [
     "owner": "brentyi",
     "repo": "jaxlie",
     "description": "Rigid transforms + Lie groups in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Numerical Methods and Linear Algebra Libraries",
     "status": "active",
     "stars": 321,
     "lastCommit": "2025-04-24T17:11:00Z"
@@ -636,7 +636,7 @@ const awesomeJaxData = [
     "owner": "google-deepmind",
     "repo": "kfac-jax",
     "description": "Second Order Optimization and Curvature Estimation with K-FAC in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Optimization Libraries",
     "status": "active",
     "stars": 314,
     "lastCommit": "2026-02-25T00:49:10Z"
@@ -647,7 +647,7 @@ const awesomeJaxData = [
     "owner": "dynamiqs",
     "repo": "dynamiqs",
     "description": "High-performance quantum systems simulation with JAX (GPU-accelerated & differentiable solvers).",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Quantum Computing Libraries",
     "status": "active",
     "stars": 271,
     "lastCommit": "2026-02-18T18:05:08Z"
@@ -658,7 +658,7 @@ const awesomeJaxData = [
     "owner": "google",
     "repo": "fedjax",
     "description": "FedJAX is a JAX-based open source library for Federated Learning simulations that emphasizes ease-of-use in research.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Federated Learning Libraries",
     "status": "active",
     "stars": 270,
     "lastCommit": "2026-01-23T19:30:20Z"
@@ -669,7 +669,7 @@ const awesomeJaxData = [
     "owner": "f0uriest",
     "repo": "interpax",
     "description": "Interpolation and function approximation with JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Numerical Methods and Linear Algebra Libraries",
     "status": "active",
     "stars": 250,
     "lastCommit": "2026-02-02T18:44:29Z"
@@ -680,7 +680,7 @@ const awesomeJaxData = [
     "owner": "ymahlau",
     "repo": "fdtdx",
     "description": "Electromagnetic FDTD Simulations in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Physics and Simulation Libraries",
     "status": "active",
     "stars": 243,
     "lastCommit": "2026-02-23T09:35:09Z"
@@ -713,7 +713,7 @@ const awesomeJaxData = [
     "owner": "DifferentiableUniverseInitiative",
     "repo": "jax_cosmo",
     "description": "A differentiable cosmology library in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Astrophysics and Cosmology Libraries",
     "status": "active",
     "stars": 224,
     "lastCommit": "2025-06-27T12:51:19Z"
@@ -746,7 +746,7 @@ const awesomeJaxData = [
     "owner": "ucl-bug",
     "repo": "jwave",
     "description": "A JAX-based research framework for differentiable and parallelizable acoustic simulations, on CPU, GPUs and TPUs.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Physics and Simulation Libraries",
     "status": "active",
     "stars": 194,
     "lastCommit": "2024-09-17T10:56:11Z"
@@ -757,8 +757,8 @@ const awesomeJaxData = [
     "owner": "coax-dev",
     "repo": "coax",
     "description": "Modular framework for Reinforcement Learning in python.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Reinforcement Learning Libraries",
+    "status": "inactive",
     "stars": 183,
     "lastCommit": "2023-02-01T18:50:06Z"
   },
@@ -768,7 +768,7 @@ const awesomeJaxData = [
     "owner": "jaxleyverse",
     "repo": "jaxley",
     "description": "Differentiable neuron simulations with biophysical detail on CPU, GPU, or TPU.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Molecular Dynamics and Computational Biology Libraries",
     "status": "active",
     "stars": 179,
     "lastCommit": "2026-02-12T08:40:15Z"
@@ -801,8 +801,8 @@ const awesomeJaxData = [
     "owner": "srush",
     "repo": "parallax",
     "description": "Immutable Torch Modules for JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Neural Network Libraries",
+    "status": "inactive",
     "stars": 153,
     "lastCommit": "2020-05-25T18:24:26Z"
   },
@@ -812,7 +812,7 @@ const awesomeJaxData = [
     "owner": "lanl",
     "repo": "scico",
     "description": "Scientific Computational Imaging COde.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Time Series, Filtering, and Signal Processing Libraries",
     "status": "active",
     "stars": 152,
     "lastCommit": "2026-01-29T22:30:19Z"
@@ -823,7 +823,7 @@ const awesomeJaxData = [
     "owner": "Ceyron",
     "repo": "exponax",
     "description": "Efficient Differentiable n-d PDE Solvers in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Differential Equations and Solvers Libraries",
     "status": "active",
     "stars": 145,
     "lastCommit": "2026-02-20T10:00:57Z"
@@ -834,8 +834,8 @@ const awesomeJaxData = [
     "owner": "davisyoshida",
     "repo": "lorax",
     "description": "LoRA for arbitrary JAX models and functions.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Neural Network Libraries",
+    "status": "inactive",
     "stars": 145,
     "lastCommit": "2024-02-26T03:22:21Z"
   },
@@ -845,7 +845,7 @@ const awesomeJaxData = [
     "owner": "patrick-kidger",
     "repo": "quax",
     "description": "Multiple dispatch over abstract array types in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "JAX Utilities Libraries",
     "status": "active",
     "stars": 137,
     "lastCommit": "2025-12-15T14:28:56Z"
@@ -856,8 +856,8 @@ const awesomeJaxData = [
     "owner": "SymJAX",
     "repo": "SymJAX",
     "description": "symbolic CPU/GPU/TPU programming.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "JAX Utilities Libraries",
+    "status": "inactive",
     "stars": 129,
     "lastCommit": "2020-12-21T22:02:17Z"
   },
@@ -878,8 +878,8 @@ const awesomeJaxData = [
     "owner": "n2cholas",
     "repo": "jax-resnet",
     "description": "Implementations and checkpoints for ResNet, Wide ResNet, ResNeXt, ResNet-D, and ResNeSt in JAX (Flax).",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Computer Vision Libraries",
+    "status": "inactive",
     "stars": 119,
     "lastCommit": "2022-06-05T23:48:39Z"
   },
@@ -889,8 +889,8 @@ const awesomeJaxData = [
     "owner": "paganpasta",
     "repo": "eqxvision",
     "description": "A Python package of computer vision models for the Equinox ecosystem.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Computer Vision Libraries",
+    "status": "inactive",
     "stars": 111,
     "lastCommit": "2023-03-11T21:57:52Z"
   },
@@ -900,7 +900,7 @@ const awesomeJaxData = [
     "owner": "gboehl",
     "repo": "econpizza",
     "description": "Solve nonlinear heterogeneous agent models.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Economics and Finance Libraries",
     "status": "active",
     "stars": 110,
     "lastCommit": "2025-11-07T09:53:59Z"
@@ -911,8 +911,8 @@ const awesomeJaxData = [
     "owner": "google-deepmind",
     "repo": "einshape",
     "description": "DSL-based reshaping library for JAX and other frameworks.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "JAX Utilities Libraries",
+    "status": "inactive",
     "stars": 109,
     "lastCommit": "2022-12-19T15:04:40Z"
   },
@@ -922,8 +922,8 @@ const awesomeJaxData = [
     "owner": "ElArkk",
     "repo": "jax-unirep",
     "description": "Reimplementation of the UniRep protein featurization model.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Molecular Dynamics and Computational Biology Libraries",
+    "status": "inactive",
     "stars": 108,
     "lastCommit": "2022-08-15T18:47:10Z"
   },
@@ -944,8 +944,8 @@ const awesomeJaxData = [
     "owner": "carnotresearch",
     "repo": "cr-sparse",
     "description": "Functional models and algorithms for sparse signal processing.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Time Series, Filtering, and Signal Processing Libraries",
+    "status": "inactive",
     "stars": 97,
     "lastCommit": "2023-10-17T08:57:03Z"
   },
@@ -955,7 +955,7 @@ const awesomeJaxData = [
     "owner": "f0uriest",
     "repo": "quadax",
     "description": "Numerical quadrature with JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Numerical Methods and Linear Algebra Libraries",
     "status": "active",
     "stars": 77,
     "lastCommit": "2026-01-20T23:17:00Z"
@@ -977,8 +977,8 @@ const awesomeJaxData = [
     "owner": "ASEM000",
     "repo": "kernex",
     "description": "Stencil computations in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "JAX Utilities Libraries",
+    "status": "inactive",
     "stars": 71,
     "lastCommit": "2025-11-15T12:05:19Z"
   },
@@ -988,7 +988,7 @@ const awesomeJaxData = [
     "owner": "HajimeKawahara",
     "repo": "exojax",
     "description": "🐈 Automatic differentiable spectrum modeling of exoplanets/brown dwarfs using JAX, compatible with NumPyro and Optax/JAXopt.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Astrophysics and Cosmology Libraries",
     "status": "active",
     "stars": 67,
     "lastCommit": "2025-11-24T12:28:15Z"
@@ -999,8 +999,8 @@ const awesomeJaxData = [
     "owner": "romanodev",
     "repo": "deltapv",
     "description": "A photovoltaic simulator with automatic differentiation.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Physics and Simulation Libraries",
+    "status": "inactive",
     "stars": 64,
     "lastCommit": "2025-09-28T15:18:32Z"
   },
@@ -1010,8 +1010,8 @@ const awesomeJaxData = [
     "owner": "dipolar-quantum-gases",
     "repo": "jaxfit",
     "description": "GPU/TPU accelerated nonlinear least-squares curve fitting using JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Optimization Libraries",
+    "status": "inactive",
     "stars": 60,
     "lastCommit": "2023-06-23T12:28:01Z"
   },
@@ -1021,7 +1021,7 @@ const awesomeJaxData = [
     "owner": "rdyro",
     "repo": "torch2jax",
     "description": "Wraps PyTorch code in a JIT-compatible way for JAX. Supports automatically defining gradients for reverse-mode AutoDiff.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "JAX Utilities Libraries",
     "status": "active",
     "stars": 58,
     "lastCommit": "2026-02-15T20:14:47Z"
@@ -1032,7 +1032,7 @@ const awesomeJaxData = [
     "owner": "pnkraemer",
     "repo": "probdiffeq",
     "description": "Probabilistic solvers for differential equations in JAX. Adaptive ODE solvers with calibration, state-space model factorisations, and custom information operators. Compatible with the broader JAX scientific computing ecosystem.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Differential Equations and Solvers Libraries",
     "status": "active",
     "stars": 54,
     "lastCommit": "2026-02-18T09:54:46Z"
@@ -1043,7 +1043,7 @@ const awesomeJaxData = [
     "owner": "leo1200",
     "repo": "astronomix",
     "description": "differentiable (magneto)hydrodynamics for astrophysics in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Astrophysics and Cosmology Libraries",
     "status": "active",
     "stars": 52,
     "lastCommit": "2026-02-24T15:42:06Z"
@@ -1054,8 +1054,8 @@ const awesomeJaxData = [
     "owner": "alvarobartt",
     "repo": "safejax",
     "description": "Serialize JAX, Flax, Haiku, or Objax model params with 🤗`safetensors`.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "JAX Utilities Libraries",
+    "status": "inactive",
     "stars": 47,
     "lastCommit": "2023-01-19T17:42:26Z"
   },
@@ -1065,8 +1065,8 @@ const awesomeJaxData = [
     "owner": "ExpectationMax",
     "repo": "sklearn-jax-kernels",
     "description": "Composable kernels for scikit-learn implemented in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Gaussian Processes Libraries",
+    "status": "inactive",
     "stars": 47,
     "lastCommit": "2020-10-26T20:36:19Z"
   },
@@ -1076,8 +1076,8 @@ const awesomeJaxData = [
     "owner": "rolandgvc",
     "repo": "flaxvision",
     "description": "A selection of neural network models ported from torchvision for JAX & Flax.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Computer Vision Libraries",
+    "status": "inactive",
     "stars": 45,
     "lastCommit": "2021-01-04T13:49:53Z"
   },
@@ -1098,8 +1098,8 @@ const awesomeJaxData = [
     "owner": "4rtemi5",
     "repo": "imax",
     "description": "Image augmentation library for Jax.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Computer Vision Libraries",
+    "status": "inactive",
     "stars": 41,
     "lastCommit": "2024-04-09T12:37:08Z"
   },
@@ -1120,7 +1120,7 @@ const awesomeJaxData = [
     "owner": "flaport",
     "repo": "klujax",
     "description": "Solve sparse linear systems in JAX using the KLU algorithm.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Numerical Methods and Linear Algebra Libraries",
     "status": "active",
     "stars": 38,
     "lastCommit": "2026-02-19T09:41:22Z"
@@ -1131,7 +1131,7 @@ const awesomeJaxData = [
     "owner": "gchq",
     "repo": "coreax",
     "description": "A library for coreset algorithms, written in Jax for fast execution and GPU support.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "JAX Utilities Libraries",
     "status": "active",
     "stars": 37,
     "lastCommit": "2026-02-23T08:42:05Z"
@@ -1142,7 +1142,7 @@ const awesomeJaxData = [
     "owner": "flatironinstitute",
     "repo": "jaxmg",
     "description": "JAXMg: A multi-GPU linear solver in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Numerical Methods and Linear Algebra Libraries",
     "status": "active",
     "stars": 37,
     "lastCommit": "2026-01-27T17:37:42Z"
@@ -1153,7 +1153,7 @@ const awesomeJaxData = [
     "owner": "smorad",
     "repo": "memax",
     "description": "Deep memory and sequence models in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
+    "category": "Neural Network Libraries",
     "status": "active",
     "stars": 23,
     "lastCommit": "2026-01-15T10:52:17Z"
@@ -1164,8 +1164,8 @@ const awesomeJaxData = [
     "owner": "hd-UQ",
     "repo": "cd_dynamax",
     "description": "Extension of dynamax repo to cases with continuous-time dynamics with measurements sampled at possibly irregular discrete times. Allows generic inference of dynamical systems parameters from partial noisy observations via auto-differentiable filtering, SGD, and HMC.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Time Series, Filtering, and Signal Processing Libraries",
+    "status": "up-and-coming",
     "stars": 20,
     "lastCommit": "2026-02-18T00:01:41Z"
   },
@@ -1175,8 +1175,8 @@ const awesomeJaxData = [
     "owner": "mancusolab",
     "repo": "traceax",
     "description": "Stochastic trace estimation using JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Numerical Methods and Linear Algebra Libraries",
+    "status": "up-and-coming",
     "stars": 17,
     "lastCommit": "2025-08-20T22:53:18Z"
   },
@@ -1186,8 +1186,8 @@ const awesomeJaxData = [
     "owner": "jamielohoff",
     "repo": "graphax",
     "description": "Cross-Country Elimination in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "JAX Utilities Libraries",
+    "status": "up-and-coming",
     "stars": 17,
     "lastCommit": "2025-03-23T22:44:54Z"
   },
@@ -1197,25 +1197,156 @@ const awesomeJaxData = [
     "owner": "lockwo",
     "repo": "jumpax",
     "description": "Jump Processes in JAX.",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "category": "Differential Equations and Solvers Libraries",
+    "status": "up-and-coming",
     "stars": 7,
     "lastCommit": "2026-01-04T17:42:46Z"
   },
   {
     "name": "driftax",
-    "url": "https://https://github.com/wrkhard/driftax",
+    "url": "https://github.com/wrkhard/driftax",
     "owner": "wrkhard",
     "repo": "driftax",
-    "description": "Drifting Generative Models - JAX/Flax implmentation of [Generative Modeling via Drifting](https://arxiv.org/abs/2602.04770).",
-    "category": "Distributions, Sampling, and Probabilistic Libraries",
-    "status": "active",
+    "description": "Drifting Generative Models - JAX/Flax implmentation of Generative Modeling via Drifting.",
+    "category": "Neural Network Libraries",
+    "status": "up-and-coming",
     "stars": 5,
     "lastCommit": "2026-02-25T05:01:40Z"
+  },
+  {
+    "name": "ksim",
+    "url": "https://github.com/kscalelabs/ksim",
+    "owner": "kscalelabs",
+    "repo": "ksim",
+    "description": "RL training library for humanoid locomotion and manipulation. Built on top of MuJoCo and JAX.",
+    "category": "Reinforcement Learning Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "paramrf",
+    "url": "https://github.com/gvcallen/paramrf",
+    "owner": "gvcallen",
+    "repo": "paramrf",
+    "description": "Parametric Radio Frequency Modeling.",
+    "category": "Physics and Simulation Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "haliax",
+    "url": "https://github.com/marin-community/haliax",
+    "owner": "marin-community",
+    "repo": "haliax",
+    "description": "Named Tensors for Legible Deep Learning in JAX.",
+    "category": "Neural Network Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "unxt",
+    "url": "https://github.com/GalacticDynamics/unxt",
+    "owner": "GalacticDynamics",
+    "repo": "unxt",
+    "description": "Unitful Quantities in JAX.",
+    "category": "JAX Utilities Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "coordinax",
+    "url": "https://github.com/GalacticDynamics/coordinax",
+    "owner": "GalacticDynamics",
+    "repo": "coordinax",
+    "description": "Coordinates in JAX.",
+    "category": "Numerical Methods and Linear Algebra Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "galax",
+    "url": "https://github.com/GalacticDynamics/galax",
+    "owner": "GalacticDynamics",
+    "repo": "galax",
+    "description": "Galactic and Gravitational Dynamics in Python (+ GPU and autodiff).",
+    "category": "Astrophysics and Cosmology Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "parax",
+    "url": "https://github.com/gvcallen/parax",
+    "owner": "gvcallen",
+    "repo": "parax",
+    "description": "Parametric modeling in JAX.",
+    "category": "JAX Utilities Libraries",
+    "status": "up-and-coming",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "mutax",
+    "url": "https://github.com/gerlero/mutax",
+    "owner": "gerlero",
+    "repo": "mutax",
+    "description": "SciPy-like differential evolution optimization in JAX.",
+    "category": "Evolutionary and Population-Based Methods Libraries",
+    "status": "up-and-coming",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "diffraxtra",
+    "url": "https://github.com/GalacticDynamics/diffraxtra",
+    "owner": "GalacticDynamics",
+    "repo": "diffraxtra",
+    "description": "Extras for Diffrax: OOP and vectorization.",
+    "category": "Differential Equations and Solvers Libraries",
+    "status": "up-and-coming",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "ParamRF",
+    "url": "https://github.com/paramrf/paramrf",
+    "owner": "paramrf",
+    "repo": "paramrf",
+    "description": "Parametric Radio Frequency Modelling, Fitting and Sampling.",
+    "category": "Physics and Simulation Libraries",
+    "status": "up-and-coming",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "Jaxpot",
+    "url": "https://github.com/bards-ai/Jaxpot",
+    "owner": "bards-ai",
+    "repo": "Jaxpot",
+    "description": "Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation.",
+    "category": "Reinforcement Learning Libraries",
+    "status": "up-and-coming",
+    "stars": null,
+    "lastCommit": null
   }
 ];
+
+const awesomeJaxMeta = {
+  "generatedAt": "2026-06-04T23:02:48.376Z",
+  "total": 121,
+  "active": 89,
+  "upAndComing": 10,
+  "inactive": 22,
+  "categories": 20
+};
 
 // Make available for browser
 if (typeof window !== 'undefined') {
   window.awesomeJaxData = awesomeJaxData;
+  window.awesomeJaxMeta = awesomeJaxMeta;
 }

@@ -1,259 +1,379 @@
-$(document).ready(function() {
+/* ============================================================
+   Awesome JAX — interactive explorer logic (vanilla JS)
+   Reads `awesomeJaxData` / `awesomeJaxMeta` from data.js.
+   ============================================================ */
+(function () {
+  "use strict";
 
-  // Check if data exists
-  if (typeof awesomeJaxData === 'undefined') {
-    console.error('Data not found. Please run: npm run build');
-    $('#softwareTable tbody').html(`
-      <tr>
-        <td colspan="6" class="text-center">
-          <div class="alert alert-warning">
-            No data found. Please run <code>npm run build</code> to generate data.
-          </div>
-        </td>
-      </tr>
-    `);
+  const data = Array.isArray(window.awesomeJaxData) ? window.awesomeJaxData.slice() : [];
+  const meta = window.awesomeJaxMeta || null;
+
+  const els = {
+    stats: document.getElementById("stats"),
+    search: document.getElementById("search"),
+    clearSearch: document.getElementById("clearSearch"),
+    statusFilter: document.getElementById("statusFilter"),
+    sort: document.getElementById("sort"),
+    categoryFilter: document.getElementById("categoryFilter"),
+    grid: document.getElementById("grid"),
+    empty: document.getElementById("empty"),
+    emptyReset: document.getElementById("emptyReset"),
+    resultCount: document.getElementById("resultCount"),
+    clearFilters: document.getElementById("clearFilters"),
+    footerMeta: document.getElementById("footerMeta"),
+  };
+
+  // ---- Fallback if data failed to load ----
+  if (!data.length) {
+    els.grid.innerHTML = "";
+    els.empty.hidden = false;
+    els.empty.querySelector("h2").textContent = "No data found";
+    els.empty.querySelector("p").textContent = "Run `npm run build` in the docs folder to generate data.js.";
+    if (els.emptyReset) els.emptyReset.hidden = true;
     return;
   }
 
-  let table;
-  let currentCategoryFilter = null;
-  let currentStatusFilter = null;
+  const STATUS_META = {
+    active: { label: "Active", dot: "dot-active" },
+    "up-and-coming": { label: "Up & Coming", dot: "dot-up-and-coming" },
+    inactive: { label: "Inactive", dot: "dot-inactive" },
+  };
+  const STATUS_ORDER = ["active", "up-and-coming", "inactive"];
 
-  // Format date
-  function formatDate(dateString) {
-    if (!dateString) return 'Unknown';
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffTime = Math.abs(now - date);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const state = { query: "", status: null, category: null, sort: "stars-desc" };
 
-    if (diffDays < 1) {
-      return 'Today';
-    } else if (diffDays < 7) {
-      return `${diffDays} days ago`;
-    } else if (diffDays < 30) {
-      const weeks = Math.floor(diffDays / 7);
-      return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
-    } else if (diffDays < 365) {
-      const months = Math.floor(diffDays / 30);
-      return `${months} month${months > 1 ? 's' : ''} ago`;
-    } else {
-      const years = Math.floor(diffDays / 365);
-      return `${years} year${years > 1 ? 's' : ''} ago`;
-    }
+  // ---------- helpers ----------
+  function shortCategory(cat) {
+    return cat.replace(/\s+Libraries$/, "");
   }
 
-  // Format status badge
-  function formatStatus(status) {
-    const statusClass = `status-${status.toLowerCase()}`;
-    const displayStatus = status === 'up-and-coming' ? 'Up & Coming' :
-                         status.charAt(0).toUpperCase() + status.slice(1);
-    return `<span class="status-badge ${statusClass}">${displayStatus}</span>`;
+  function formatStars(n) {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  // Format stars with commas
-  function formatStars(stars) {
-    if (!stars) return '0';
-    return stars.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  function relativeDate(iso) {
+    if (!iso) return "Unknown";
+    const then = new Date(iso).getTime();
+    if (isNaN(then)) return "Unknown";
+    const days = Math.floor((Date.now() - then) / 86400000);
+    if (days <= 0) return "today";
+    if (days === 1) return "yesterday";
+    if (days < 7) return days + " days ago";
+    if (days < 30) { const w = Math.floor(days / 7); return w + (w > 1 ? " weeks" : " week") + " ago"; }
+    if (days < 365) { const m = Math.floor(days / 30); return m + (m > 1 ? " months" : " month") + " ago"; }
+    const y = Math.floor(days / 365);
+    return y + (y > 1 ? " years" : " year") + " ago";
   }
 
-  // Populate table
-  function populateTable() {
-    const tbody = $('#softwareTable tbody');
-    tbody.empty();
+  function ts(iso) {
+    const t = iso ? new Date(iso).getTime() : 0;
+    return isNaN(t) ? 0 : t;
+  }
 
-    awesomeJaxData.forEach(lib => {
-      const rowClass = lib.status === 'inactive' ? 'inactive-row' : '';
-      const githubUrl = lib.url;
+  function svg(markup) {
+    const span = document.createElement("span");
+    span.style.display = "inline-flex";
+    span.innerHTML = markup;
+    return span.firstElementChild;
+  }
+  const ICON_STAR = '<svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M8 1.2l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11l-3.8 2 .7-4.3-3.1-3 4.3-.6z"/></svg>';
+  const ICON_CLOCK = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.5V8l2.4 1.6" stroke-linecap="round"/></svg>';
+  const ICON_ARROW = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11l6-6M6.2 4.8H11V9.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-      const row = $('<tr>').addClass(rowClass);
+  // ---------- stats (hero summary) ----------
+  function renderStats() {
+    const counts = {
+      total: data.length,
+      active: data.filter((l) => l.status === "active").length,
+      "up-and-coming": data.filter((l) => l.status === "up-and-coming").length,
+      inactive: data.filter((l) => l.status === "inactive").length,
+    };
+    const pills = [
+      { num: counts.total, label: "libraries", cls: "is-total" },
+      { num: counts.active, label: "active", dot: "var(--active)" },
+      { num: counts["up-and-coming"], label: "up & coming", dot: "var(--upcoming)" },
+      { num: counts.inactive, label: "inactive", dot: "var(--inactive)" },
+    ];
+    const frag = document.createDocumentFragment();
+    pills.forEach((p) => {
+      const el = document.createElement("div");
+      el.className = "stat" + (p.cls ? " " + p.cls : "");
+      if (p.dot) {
+        const d = document.createElement("span");
+        d.className = "stat-dot";
+        d.style.background = p.dot;
+        el.appendChild(d);
+      }
+      const num = document.createElement("span");
+      num.className = "stat-num";
+      num.textContent = formatStars(p.num);
+      const lbl = document.createElement("span");
+      lbl.className = "stat-label";
+      lbl.textContent = p.label;
+      el.append(num, lbl);
+      frag.appendChild(el);
+    });
+    els.stats.replaceChildren(frag);
+  }
 
-      // Library Name (with link)
-      row.append($('<td>').html(
-        `<a href="${githubUrl}" target="_blank" class="text-info">${lib.name}</a>`
-      ));
-
-      // Description
-      row.append($('<td>').html(
-        `<span class="description-cell">${lib.description || 'No description'}</span>`
-      ));
-
-      // Category
-      row.append($('<td>').html(
-        `<span class="category-badge">${lib.category}</span>`
-      ));
-
-      // Stars (with number or dash for unknown)
-      const starsValue = lib.stars || 0;
-      const starsDisplay = lib.stars
-        ? `<span class="text-warning">★ ${formatStars(lib.stars)}</span>`
-        : `<span class="text-muted">★ —</span>`;
-      row.append($('<td>').attr('data-order', starsValue).html(starsDisplay));
-
-      // Last Updated
-      row.append($('<td>').html(
-        `<span class="last-updated">${formatDate(lib.lastCommit)}</span>`
-      ));
-
-      // Status
-      row.append($('<td>').html(formatStatus(lib.status)));
-
-      tbody.append(row);
+  // ---------- status segmented control ----------
+  function renderStatusFilter() {
+    const frag = document.createDocumentFragment();
+    const opts = [{ value: null, label: "All", count: data.length }].concat(
+      STATUS_ORDER.map((s) => ({
+        value: s,
+        label: STATUS_META[s].label,
+        count: data.filter((l) => l.status === s).length,
+        dot: STATUS_META[s].dot,
+      }))
+    );
+    opts.forEach((o) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "seg-btn";
+      btn.setAttribute("aria-pressed", String(state.status === o.value));
+      btn.dataset.value = o.value === null ? "" : o.value;
+      if (o.dot) {
+        const d = document.createElement("span");
+        d.className = "dot " + o.dot;
+        btn.appendChild(d);
+      }
+      btn.appendChild(document.createTextNode(o.label));
+      const c = document.createElement("span");
+      c.className = "seg-count";
+      c.textContent = o.count;
+      btn.appendChild(c);
+      btn.addEventListener("click", () => {
+        state.status = state.status === o.value ? null : o.value;
+        syncStatusFilter();
+        render();
+      });
+      frag.appendChild(btn);
+    });
+    els.statusFilter.replaceChildren(frag);
+  }
+  function syncStatusFilter() {
+    els.statusFilter.querySelectorAll(".seg-btn").forEach((b) => {
+      b.setAttribute("aria-pressed", String((b.dataset.value || null) === state.status));
     });
   }
 
-  // Initialize DataTable
-  function initDataTable() {
-    table = $('#softwareTable').DataTable({
-      pageLength: 25,
-      lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-      order: [[3, 'desc']], // Sort by stars by default
-      columnDefs: [
-        { orderable: true, targets: [0, 3, 4] },
-        { orderable: false, targets: [1, 2, 5] },
-        { type: 'num', targets: [3] }
-      ],
-      language: {
-        search: "Search libraries:",
-        lengthMenu: "Show _MENU_ libraries",
-        info: "Showing _START_ to _END_ of _TOTAL_ libraries",
-        paginate: {
-          first: "First",
-          last: "Last",
-          next: "Next",
-          previous: "Previous"
-        }
-      }
+  // ---------- category chips ----------
+  function renderCategoryFilter() {
+    const counts = {};
+    data.forEach((l) => { counts[l.category] = (counts[l.category] || 0) + 1; });
+    const cats = Object.keys(counts).sort((a, b) => (counts[b] - counts[a]) || a.localeCompare(b));
+
+    const frag = document.createDocumentFragment();
+    const all = makeChip(null, "All categories", data.length);
+    frag.appendChild(all);
+    cats.forEach((c) => frag.appendChild(makeChip(c, shortCategory(c), counts[c])));
+    els.categoryFilter.replaceChildren(frag);
+  }
+  function makeChip(value, label, count) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "chip";
+    btn.title = value || "Show all categories";
+    btn.setAttribute("aria-pressed", String(state.category === value));
+    btn.dataset.value = value === null ? "" : value;
+    btn.appendChild(document.createTextNode(label));
+    const c = document.createElement("span");
+    c.className = "chip-count";
+    c.textContent = count;
+    btn.appendChild(c);
+    btn.addEventListener("click", () => {
+      state.category = state.category === value ? null : value;
+      syncCategoryFilter();
+      render();
+    });
+    return btn;
+  }
+  function syncCategoryFilter() {
+    els.categoryFilter.querySelectorAll(".chip").forEach((b) => {
+      b.setAttribute("aria-pressed", String((b.dataset.value || null) === state.category));
     });
   }
 
-  // Populate filter dropdowns
-  function populateFilters() {
-    // Category filter
-    const categories = [...new Set(awesomeJaxData.map(lib => lib.category))].sort();
-    const categoryDropdown = $('#categoryDropdown');
-    categoryDropdown.empty();
-    categories.forEach(category => {
-      categoryDropdown.append(
-        $('<li>').append(
-          $('<a>')
-            .addClass('dropdown-item')
-            .attr('href', '#')
-            .text(category)
-            .on('click', function(e) {
-              e.preventDefault();
-              filterByCategory(category);
-            })
-        )
-      );
-    });
+  // ---------- card ----------
+  function buildCard(lib, index) {
+    const card = document.createElement("a");
+    card.className = "card is-" + lib.status;
+    card.href = lib.url;
+    card.target = "_blank";
+    card.rel = "noopener";
+    card.style.animationDelay = Math.min(index * 12, 260) + "ms";
 
-    // Status filter - always show all options with counts
-    const statusDropdown = $('#statusDropdown');
-    statusDropdown.empty();
+    // head: name + stars
+    const head = document.createElement("div");
+    head.className = "card-head";
+    const name = document.createElement("span");
+    name.className = "card-name";
+    name.textContent = lib.name;
+    const stars = document.createElement("span");
+    stars.className = "card-stars" + (lib.stars == null ? " is-unknown" : "");
+    stars.appendChild(svg(ICON_STAR));
+    stars.appendChild(document.createTextNode(lib.stars == null ? "—" : formatStars(lib.stars)));
+    head.append(name, stars);
 
-    const statusOrder = ['active', 'up-and-coming', 'inactive'];
-    statusOrder.forEach(status => {
-      const count = awesomeJaxData.filter(lib => lib.status === status).length;
-      const displayStatus = status === 'up-and-coming' ? 'Up & Coming' :
-                           status.charAt(0).toUpperCase() + status.slice(1);
-      const item = $('<a>')
-        .addClass('dropdown-item')
-        .attr('href', '#')
-        .text(`${displayStatus} (${count})`);
+    // meta: category + status
+    const metaRow = document.createElement("div");
+    metaRow.className = "card-meta";
+    const cat = document.createElement("span");
+    cat.className = "card-cat";
+    cat.textContent = shortCategory(lib.category);
+    cat.title = lib.category;
+    const status = document.createElement("span");
+    status.className = "card-status";
+    const sm = STATUS_META[lib.status] || { label: lib.status, dot: "dot-inactive" };
+    const dot = document.createElement("span");
+    dot.className = "dot " + sm.dot;
+    status.append(dot, document.createTextNode(sm.label));
+    metaRow.append(cat, status);
 
-      if (count > 0) {
-        item.on('click', function(e) {
-          e.preventDefault();
-          filterByStatus(status);
-        });
-      } else {
-        item.addClass('disabled text-muted');
-      }
+    // description
+    const desc = document.createElement("p");
+    desc.className = "card-desc";
+    desc.textContent = lib.description || "No description available.";
 
-      statusDropdown.append($('<li>').append(item));
-    });
+    // foot: updated + repo
+    const foot = document.createElement("div");
+    foot.className = "card-foot";
+    const updated = document.createElement("span");
+    updated.className = "card-updated";
+    updated.appendChild(svg(ICON_CLOCK));
+    updated.appendChild(document.createTextNode("Updated " + relativeDate(lib.lastCommit)));
+    const repo = document.createElement("span");
+    repo.className = "card-repo";
+    repo.appendChild(document.createTextNode("Repo"));
+    repo.appendChild(svg(ICON_ARROW));
+    foot.append(updated, repo);
+
+    card.append(head, metaRow, desc, foot);
+    return card;
   }
 
-  // Filter functions
-  function filterByCategory(category) {
-    currentCategoryFilter = category;
-    applyFilters();
-    $('#clearCategoryFilter').show();
-  }
-
-  function filterByStatus(status) {
-    currentStatusFilter = status;
-    applyFilters();
-    $('#clearStatusFilter').show();
-  }
-
-  function applyFilters() {
-    // Clear search
-    table.search('');
-
-    // Build filter function
-    $.fn.dataTable.ext.search.pop(); // Remove any existing custom filter
-
-    $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-      const lib = awesomeJaxData[dataIndex];
-
-      // Category filter
-      if (currentCategoryFilter && lib.category !== currentCategoryFilter) {
-        return false;
+  // ---------- filter + sort + render ----------
+  function getFiltered() {
+    const q = state.query.trim().toLowerCase();
+    let rows = data.filter((lib) => {
+      if (state.status && lib.status !== state.status) return false;
+      if (state.category && lib.category !== state.category) return false;
+      if (q) {
+        const hay = (lib.name + " " + (lib.description || "") + " " + lib.category).toLowerCase();
+        if (!hay.includes(q)) return false;
       }
-
-      // Status filter
-      if (currentStatusFilter && lib.status !== currentStatusFilter) {
-        return false;
-      }
-
       return true;
     });
 
-    table.draw();
+    const cmp = {
+      "stars-desc": (a, b) => (b.stars || 0) - (a.stars || 0) || a.name.localeCompare(b.name),
+      "stars-asc": (a, b) => (a.stars || 0) - (b.stars || 0) || a.name.localeCompare(b.name),
+      "name-asc": (a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
+      "name-desc": (a, b) => b.name.localeCompare(a.name, undefined, { sensitivity: "base" }),
+      "updated-desc": (a, b) => ts(b.lastCommit) - ts(a.lastCommit) || a.name.localeCompare(b.name),
+    }[state.sort];
+    rows.sort(cmp);
+    return rows;
   }
 
-  // Clear filter functions
-  $('#clearCategoryFilter').on('click', function() {
-    currentCategoryFilter = null;
-    applyFilters();
-    $(this).hide();
+  function setResultCount(shown, total) {
+    const strong = document.createElement("strong");
+    strong.textContent = shown;
+    els.resultCount.replaceChildren();
+    if (shown === total) {
+      strong.textContent = total;
+      els.resultCount.append("Showing all ", strong, " libraries");
+    } else {
+      els.resultCount.append("Showing ", strong, " of " + total + " libraries");
+    }
+  }
+
+  function render() {
+    const rows = getFiltered();
+
+    if (rows.length === 0) {
+      els.grid.replaceChildren();
+      els.empty.hidden = false;
+    } else {
+      els.empty.hidden = true;
+      const frag = document.createDocumentFragment();
+      rows.forEach((lib, i) => frag.appendChild(buildCard(lib, i)));
+      els.grid.replaceChildren(frag);
+    }
+
+    // result bar (built with DOM nodes — no innerHTML)
+    setResultCount(rows.length, data.length);
+
+    const hasFilters = !!(state.query || state.status || state.category) || state.sort !== "stars-desc";
+    els.clearFilters.hidden = !hasFilters;
+    els.clearSearch.hidden = !state.query;
+  }
+
+  // ---------- reset ----------
+  function resetFilters() {
+    clearTimeout(searchTimer);
+    state.query = "";
+    state.status = null;
+    state.category = null;
+    state.sort = "stars-desc";
+    els.search.value = "";
+    els.sort.value = "stars-desc";
+    syncStatusFilter();
+    syncCategoryFilter();
+    render();
+  }
+
+  // ---------- events ----------
+  let searchTimer = null;
+  els.search.addEventListener("input", (e) => {
+    const v = e.target.value;
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => { state.query = v; render(); }, 110);
+  });
+  els.clearSearch.addEventListener("click", () => {
+    clearTimeout(searchTimer);
+    els.search.value = "";
+    state.query = "";
+    els.search.focus();
+    render();
+  });
+  els.sort.addEventListener("change", (e) => { state.sort = e.target.value; render(); });
+  els.clearFilters.addEventListener("click", resetFilters);
+  if (els.emptyReset) els.emptyReset.addEventListener("click", resetFilters);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && document.activeElement !== els.search) {
+      e.preventDefault();
+      els.search.focus();
+    } else if (e.key === "Escape" && document.activeElement === els.search) {
+      clearTimeout(searchTimer);
+      els.search.value = "";
+      state.query = "";
+      els.search.blur();
+      render();
+    }
   });
 
-  $('#clearStatusFilter').on('click', function() {
-    currentStatusFilter = null;
-    applyFilters();
-    $(this).hide();
-  });
+  // ---------- footer ----------
+  function renderFooter() {
+    let txt = data.length + " libraries across " +
+      new Set(data.map((l) => l.category)).size + " categories";
+    if (meta && meta.generatedAt) {
+      const d = new Date(meta.generatedAt);
+      if (!isNaN(d.getTime())) {
+        txt += " · data updated " +
+          d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+      }
+    }
+    txt += " · generated from README.md";
+    els.footerMeta.textContent = txt;
+  }
 
-  // Refresh data button
-  $('#refreshData').on('click', function() {
-    const btn = $(this);
-    btn.prop('disabled', true).text('Building...');
-
-    // Show instructions
-    alert('To refresh data:\n\n1. Open terminal in the docs folder\n2. Run: npm run build\n3. Refresh this page\n\nFor faster builds without GitHub data:\nnpm run build:fast');
-
-    btn.prop('disabled', false).text('Refresh Data');
-  });
-
-  // Initialize everything
-  populateTable();
-  initDataTable();
-  populateFilters();
-
-  // Hide clear buttons initially
-  $('#clearCategoryFilter').hide();
-  $('#clearStatusFilter').hide();
-
-  // Display data statistics
-  const stats = {
-    total: awesomeJaxData.length,
-    active: awesomeJaxData.filter(l => l.status === 'active').length,
-    inactive: awesomeJaxData.filter(l => l.status === 'inactive').length,
-    upAndComing: awesomeJaxData.filter(l => l.status === 'up-and-coming').length
-  };
-
-  console.log('Awesome JAX Statistics:', stats);
-});
+  // ---------- init ----------
+  renderStats();
+  renderStatusFilter();
+  renderCategoryFilter();
+  renderFooter();
+  render();
+})();

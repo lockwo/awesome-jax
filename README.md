@@ -18,7 +18,6 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [Tutorials and Blog Posts](#tutorials-and-blog-posts)
 - [Community](#community)
 
-
 ## Libraries
 
 - Neural Network Libraries

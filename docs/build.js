@@ -7,6 +7,7 @@ const https = require('https');
 const README_PATH = path.join(__dirname, '..', 'README.md');
 const OUTPUT_PATH = path.join(__dirname, 'data.js');
 const CACHE_PATH = path.join(__dirname, '.github-cache.json');
+const CATEGORIES_PATH = path.join(__dirname, 'categories.json');
 const CACHE_TTL = 60 * 60 * 1000; // 1 hour
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
@@ -15,26 +16,20 @@ const args = process.argv.slice(2);
 const noGithub = args.includes('--no-github');
 const noCache = args.includes('--no-cache');
 
-// Categories to include (only libraries)
-const LIBRARY_CATEGORIES = [
-  'Neural Network Libraries',
-  'Reinforcement Learning Libraries',
-  'Natural Language Processing Libraries',
-  'JAX Utilities Libraries',
-  'Computer Vision Libraries',
-  'Distributions, Sampling, and Probabilistic Libraries',
-  'Molecular Dynamics, Molecular Mechanics, Protein Folding, Drug Discovery',
-  'Gaussian Processes Libraries',
-  'Graph Neural Network Libraries',
-  'Time Series, Filtering, Signal Processing Libraries',
-  'Federated Learning Libraries',
-  'Optimization Libraries',
-  'Cosmology Libraries',
-  'Geospatial Libraries',
-  'Quantum Computing Libraries',
-  'Weather and Ocean Libraries',
-  'Dimensionality Reduction Libraries'
-];
+// Category resolution (README is never modified by this script):
+//   1. Libraries indented under a "- X Libraries" header in the README take that
+//      header as their category (the existing top-level categories).
+//   2. Everything else (the flat list, Up-and-Coming, Inactive) is categorized
+//      via docs/categories.json — a website-only map of "owner/repo" -> category.
+//   3. Anything still unmatched falls back to "Other".
+// Status is derived from the "### Up and Coming" / "### Inactive" sub-headers.
+let CATEGORY_OVERRIDES = {};
+try {
+  const raw = JSON.parse(require('fs').readFileSync(CATEGORIES_PATH, 'utf8'));
+  CATEGORY_OVERRIDES = raw.categories || raw || {};
+} catch {
+  console.warn('⚠️  Could not read categories.json — flat libraries will be "Other"');
+}
 
 // Helper function to make HTTPS requests (follows redirects)
 function httpsRequest(url, options = {}, redirectCount = 0) {
@@ -55,14 +50,20 @@ function httpsRequest(url, options = {}, redirectCount = 0) {
 
     https.get(requestOptions, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        resolve(httpsRequest(res.headers.location, options, redirectCount + 1));
+        // Resolve relative redirect targets against the current URL.
+        const nextUrl = new URL(res.headers.location, url).toString();
+        resolve(httpsRequest(nextUrl, options, redirectCount + 1));
         return;
       }
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(JSON.parse(data));
+          try {
+            resolve(JSON.parse(data));
+          } catch (err) {
+            reject(new Error(`Invalid JSON (HTTP ${res.statusCode}): ${err.message}`));
+          }
         } else {
           reject(new Error(`HTTP ${res.statusCode}: ${data}`));
         }
@@ -124,77 +125,106 @@ async function parseReadme() {
 
   const libraries = [];
   let currentCategory = null;
-  let currentSubCategory = null;
+  let currentStatus = 'active';
   let inLibrarySection = false;
-  let indent = 0;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    // Check for Libraries section
-    if (line === '## Libraries') {
+    // Enter the Libraries section
+    if (line.trim() === '## Libraries') {
       inLibrarySection = true;
+      currentStatus = 'active';
+      currentCategory = null;
       continue;
     }
 
-    // Exit when we hit the next major section
-    if (line.startsWith('## ') && line !== '## Libraries') {
+    // Exit when we hit the next major (H2) section
+    if (line.startsWith('## ') && line.trim() !== '## Libraries') {
       inLibrarySection = false;
       continue;
     }
 
-    // Skip if not in library section
     if (!inLibrarySection) continue;
 
-    // Check for category headers (bullet points)
-    const categoryMatch = line.match(/^- (.+ Libraries)$/);
-    if (categoryMatch) {
-      const category = categoryMatch[1];
-      if (LIBRARY_CATEGORIES.includes(category)) {
-        currentCategory = category;
-        currentSubCategory = null;
-      }
+    // Status sub-sections (H3 headers). Each one resets the active category so
+    // libraries don't inherit a category from the previous section.
+    if (/^###\s+Up[\s-]and[\s-]Coming/i.test(line)) {
+      currentStatus = 'up-and-coming';
+      currentCategory = null;
+      continue;
+    }
+    if (/^###\s+Inactive/i.test(line)) {
+      currentStatus = 'inactive';
+      currentCategory = null;
+      continue;
+    }
+    // Any other H3 (e.g. a future "### Active Libraries") just resets category.
+    if (line.startsWith('### ')) {
+      currentCategory = null;
       continue;
     }
 
-    // Check for subcategory headers (indented bullet points)
-    const subcategoryMatch = line.match(/^    - ([^[\]]+)$/);
-    if (subcategoryMatch && currentCategory) {
-      currentSubCategory = subcategoryMatch[1];
+    // Category header: a top-level bullet ending in "Libraries" that is not a link.
+    const categoryMatch = line.match(/^- (.+ Libraries)\s*$/);
+    if (categoryMatch && !line.includes('](')) {
+      currentCategory = categoryMatch[1].trim();
       continue;
     }
 
-    // Parse library entries (with various indentation levels)
-    const libraryMatch = line.match(/^\s*- \[([^\]]+)\]\(([^)]+)\)(?:\s*-\s*(.+))?/);
-    if (libraryMatch && currentCategory) {
-      const [, name, url, restOfLine] = libraryMatch;
+    // Library entry (at any indentation level).
+    const libraryMatch = line.match(/^(\s*)- \[([^\]]+)\]\(([^)]+)\)(?:\s*-\s*(.+))?/);
+    if (libraryMatch) {
+      const [, indentStr, name, url, restOfLine] = libraryMatch;
+      const indent = indentStr.length;
 
       // Extract GitHub owner/repo from URL
-      const githubMatch = url.match(/github\.com\/([^/]+)\/([^/]+)/);
+      const githubMatch = url.match(/github\.com\/([^/]+)\/([^/?#]+)/);
       if (githubMatch) {
         const [, owner, repo] = githubMatch;
+        const repoKey = `${owner}/${repo.replace(/[#?].*$/, '').replace(/\/$/, '')}`;
 
-        // Determine status from shields.io badge
-        let status = 'active';
+        // Status comes from the current sub-section, but an inline shields.io
+        // badge (legacy format) takes precedence if present.
+        let status = currentStatus;
         if (line.includes('inactive-red')) {
           status = 'inactive';
         } else if (line.includes('upcoming-brightgreen')) {
           status = 'up-and-coming';
         }
 
-        // Clean description (remove badges)
-        const cleanDesc = restOfLine ? restOfLine.replace(/<img[^>]*>/g, '').trim() : '';
+        // Category precedence:
+        //   inline <!--cat:X--> tag  >  README header (if indented under one)
+        //   >  categories.json override  >  "Other".
+        // Flat (un-indented) libraries never inherit a header's category.
+        let category;
+        const catTag = line.match(/<!--\s*cat:\s*([^>]+?)\s*-->/i);
+        if (catTag) {
+          category = catTag[1].trim();
+        } else if (indent > 0 && currentCategory) {
+          category = currentCategory;
+        } else {
+          category = CATEGORY_OVERRIDES[repoKey] || 'Other';
+        }
 
-        // Use parent category for filtering
-        const category = currentCategory;
+        // Clean description: strip HTML comments and image badges, flatten any
+        // markdown links ([text](url) -> text), then collapse whitespace.
+        const cleanDesc = restOfLine
+          ? restOfLine
+              .replace(/<!--[\s\S]*?-->/g, '')
+              .replace(/<img[^>]*>/g, '')
+              .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+              .replace(/\s+/g, ' ')
+              .trim()
+          : '';
 
         libraries.push({
           name: name.trim(),
           url,
           owner,
-          repo: repo.replace(/[#?].*$/, ''), // Remove anchors/query strings
+          repo: repo.replace(/[#?].*$/, '').replace(/\/$/, ''), // strip anchors/queries/trailing slash
           description: cleanDesc,
-          category: category || 'Other',
+          category,
           status,
           stars: null,
           lastCommit: null
@@ -304,7 +334,17 @@ async function build() {
       cache.timestamp = now;
       await saveCache(cache);
     } else {
-      console.log('⏩ Skipping GitHub data (--no-github flag)\n');
+      console.log('⏩ Skipping GitHub fetch (--no-github) — reusing cached values where available\n');
+      let cacheHits = 0;
+      for (const lib of libraries) {
+        const cached = cache.data[`${lib.owner}/${lib.repo}`];
+        if (cached) {
+          lib.stars = cached.stars;
+          lib.lastCommit = cached.lastCommit;
+          cacheHits++;
+        }
+      }
+      console.log(`📊 Applied cached GitHub data to ${cacheHits}/${libraries.length} libraries`);
     }
 
     // Sort libraries by stars (descending)
@@ -312,15 +352,27 @@ async function build() {
 
     // Generate output
     console.log('\n📝 Generating data.js...');
-    const output = `// Auto-generated from README.md
-// Last updated: ${new Date().toISOString()}
+    const generatedAt = new Date().toISOString();
+    const meta = {
+      generatedAt,
+      total: libraries.length,
+      active: libraries.filter(l => l.status === 'active').length,
+      upAndComing: libraries.filter(l => l.status === 'up-and-coming').length,
+      inactive: libraries.filter(l => l.status === 'inactive').length,
+      categories: [...new Set(libraries.map(l => l.category))].sort().length
+    };
+    const output = `// Auto-generated from README.md — do not edit by hand.
+// Last updated: ${generatedAt}
 // Total libraries: ${libraries.length}
 
 const awesomeJaxData = ${JSON.stringify(libraries, null, 2)};
 
+const awesomeJaxMeta = ${JSON.stringify(meta, null, 2)};
+
 // Make available for browser
 if (typeof window !== 'undefined') {
   window.awesomeJaxData = awesomeJaxData;
+  window.awesomeJaxMeta = awesomeJaxMeta;
 }
 `;
 
