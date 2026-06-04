@@ -141,7 +141,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [parax](https://github.com/gvcallen/parax) - Parametric modeling in JAX. <img src="https://img.shields.io/github/stars/gvcallen/parax?style=social" align="center">
 - [mutax](https://github.com/gerlero/mutax) - SciPy-like differential evolution optimization in JAX. <img src="https://img.shields.io/github/stars/gerlero/mutax?style=social" align="center">
 - [diffraxtra](https://github.com/GalacticDynamics/diffraxtra) - Extras for Diffrax: OOP and vectorization. <img src="https://img.shields.io/github/stars/GalacticDynamics/diffraxtra?style=social" align="center">
-- [ParamRF](https://github.com/paramrf/paramrf) - Parametric Radio Frequency Modelling, Fitting and Sampling. <img src="https://img.shields.io/github/stars/mancusolab/traceax?style=social" align="center">
+- [ParamRF](https://github.com/paramrf/paramrf) - Parametric Radio Frequency Modelling, Fitting and Sampling. <img src="https://img.shields.io/github/stars/paramrf/paramrf?style=social" align="center">
 - [Jaxpot](https://github.com/bards-ai/Jaxpot) - Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation. <img src="https://img.shields.io/github/stars/bards-ai/Jaxpot?style=social" align="center">
 
 
