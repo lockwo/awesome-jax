@@ -28,6 +28,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 
 - Reinforcement Learning Libraries
     - [JaxMARL](https://github.com/FLAIROx/JaxMARL) - Multi-Agent Reinforcement Learning with JAX. <img src="https://img.shields.io/github/stars/FLAIROx/JaxMARL?style=social" align="center">
+    - [ksim](https://github.com/kscalelabs/ksim) - RL training library for humanoid locomotion and manipulation. Built on top of MuJoCo and JAX. <img src="https://img.shields.io/github/stars/kscalelabs/ksim?style=social" align="center">
     - Algorithms
         - [cleanrl](https://github.com/vwxyzjn/cleanrl) - High-quality single file implementation of Deep Reinforcement Learning algorithms with research-friendly features (PPO, DQN, C51, DDPG, TD3, SAC, PPG). <img src="https://img.shields.io/github/stars/vwxyzjn/cleanrl?style=social" align="center">
         - [rlax](https://github.com/google-deepmind/rlax) - a library built on top of JAX that exposes useful building blocks for implementing reinforcement learning agents. <img src="https://img.shields.io/github/stars/google-deepmind/rlax?style=social" align="center">
@@ -124,7 +125,11 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [memax](https://github.com/smorad/memax) - Deep memory and sequence models in JAX. <img src="https://img.shields.io/github/stars/smorad/memax?style=social" align="center">
 - [JAXMg](https://github.com/flatironinstitute/jaxmg) - JAXMg: A multi-GPU linear solver in JAX. <img src="https://img.shields.io/github/stars/flatironinstitute/jaxmg?style=social" align="center">
 - [exponax](https://github.com/Ceyron/exponax) - Efficient Differentiable n-d PDE Solvers in JAX. <img src="https://img.shields.io/github/stars/Ceyron/exponax?style=social" align="center">
-
+- [paramrf](https://github.com/gvcallen/paramrf) - Parametric Radio Frequency Modeling. <img src="https://img.shields.io/github/stars/gvcallen/paramrf?style=social" align="center">
+- [haliax](https://github.com/marin-community/haliax) - Named Tensors for Legible Deep Learning in JAX. <img src="https://img.shields.io/github/stars/marin-community/haliax?style=social" align="center">
+- [unxt](https://github.com/GalacticDynamics/unxt) - Unitful Quantities in JAX. <img src="https://img.shields.io/github/stars/GalacticDynamics/unxt?style=social" align="center">
+- [coordinax](https://github.com/GalacticDynamics/coordinax) - Coordinates in JAX. <img src="https://img.shields.io/github/stars/GalacticDynamics/coordinax?style=social" align="center">
+- [galax](https://github.com/GalacticDynamics/galax) - Galactic and Gravitational Dynamics in Python (+ GPU and autodiff). <img src="https://img.shields.io/github/stars/GalacticDynamics/galax?style=social" align="center">
 
 ### Up and Coming Libraries
 
@@ -133,6 +138,9 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [cd_dynamax](https://github.com/hd-UQ/cd_dynamax) - Extension of dynamax repo to cases with continuous-time dynamics with measurements sampled at possibly irregular discrete times. Allows generic inference of dynamical systems parameters from partial noisy observations via auto-differentiable filtering, SGD, and HMC. <img src="https://img.shields.io/github/stars/hd-UQ/cd_dynamax?style=social" align="center">
 - [jumpax](https://github.com/lockwo/jumpax) - Jump Processes in JAX. <img src="https://img.shields.io/github/stars/lockwo/jumpax?style=social" align="center">
 - [driftax](https://https://github.com/wrkhard/driftax) - Drifting Generative Models - JAX/Flax implmentation of [Generative Modeling via Drifting](https://arxiv.org/abs/2602.04770). <img src="https://img.shields.io/github/stars/wrkhard/driftax?style=social" align="center">
+- [parax](https://github.com/gvcallen/parax) - Parametric modeling in JAX. <img src="https://img.shields.io/github/stars/gvcallen/parax?style=social" align="center">
+- [mutax](https://github.com/gerlero/mutax) - SciPy-like differential evolution optimization in JAX. <img src="https://img.shields.io/github/stars/gerlero/mutax?style=social" align="center">
+- [diffraxtra](https://github.com/GalacticDynamics/diffraxtra) - Extras for Diffrax: OOP and vectorization. <img src="https://img.shields.io/github/stars/GalacticDynamics/diffraxtra?style=social" align="center">
 
 
 ### Inactive Libraries
@@ -164,6 +172,9 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 
 - [whisper-jax](https://github.com/sanchit-gandhi/whisper-jax) - JAX implementation of OpenAI's Whisper model for up to 70x speed-up on TPU. <img src="https://img.shields.io/github/stars/sanchit-gandhi/whisper-jax?style=social" align="center">
 - [esm2quinox](https://github.com/patrick-kidger/esm2quinox) - An implementation of ESM2 in Equinox+JAX. <img src="https://img.shields.io/github/stars/patrick-kidger/esm2quinox?style=social" align="center">
+- [mosaic](https://github.com/escalante-bio/mosaic) - composite-objective protein design. <img src="https://img.shields.io/github/stars/escalante-bio/mosaic?style=social" align="center">
+- [joltz](https://github.com/nboyd/joltz) - JAX translation of boltz. <img src="https://img.shields.io/github/stars/nboyd/joltz?style=social" align="center">
+- [nequip-eqx](https://github.com/teddykoker/nequip-eqx) - JAX implementation of the NequIP neural network interatomic potential. <img src="https://img.shields.io/github/stars/teddykoker/nequip-eqx?style=social" align="center">
 
 
 ## Tutorials and Blog Posts
