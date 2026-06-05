@@ -6,7 +6,6 @@
   "use strict";
 
   const data = Array.isArray(window.awesomeJaxData) ? window.awesomeJaxData.slice() : [];
-  const meta = window.awesomeJaxMeta || null;
 
   const els = {
     stats: document.getElementById("stats"),
@@ -20,7 +19,6 @@
     emptyReset: document.getElementById("emptyReset"),
     resultCount: document.getElementById("resultCount"),
     clearFilters: document.getElementById("clearFilters"),
-    footerMeta: document.getElementById("footerMeta"),
   };
 
   // ---- Fallback if data failed to load ----
@@ -35,7 +33,7 @@
 
   const STATUS_META = {
     active: { label: "Active", dot: "dot-active" },
-    "up-and-coming": { label: "Up & Coming", dot: "dot-up-and-coming" },
+    "up-and-coming": { label: "Up and coming", dot: "dot-up-and-coming" },
     inactive: { label: "Inactive", dot: "dot-inactive" },
   };
   const STATUS_ORDER = ["active", "up-and-coming", "inactive"];
@@ -78,42 +76,27 @@
   }
   const ICON_STAR = '<svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M8 1.2l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11l-3.8 2 .7-4.3-3.1-3 4.3-.6z"/></svg>';
   const ICON_CLOCK = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 4.5V8l2.4 1.6" stroke-linecap="round"/></svg>';
-  const ICON_ARROW = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11l6-6M6.2 4.8H11V9.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  // ---------- stats (hero summary) ----------
+  // ---------- stats (single summary line) ----------
   function renderStats() {
-    const counts = {
-      total: data.length,
-      active: data.filter((l) => l.status === "active").length,
-      "up-and-coming": data.filter((l) => l.status === "up-and-coming").length,
-      inactive: data.filter((l) => l.status === "inactive").length,
-    };
-    const pills = [
-      { num: counts.total, label: "libraries", cls: "is-total" },
-      { num: counts.active, label: "active", dot: "var(--active)" },
-      { num: counts["up-and-coming"], label: "up & coming", dot: "var(--upcoming)" },
-      { num: counts.inactive, label: "inactive", dot: "var(--inactive)" },
+    const parts = [
+      [data.length, "libraries"],
+      [data.filter((l) => l.status === "active").length, "active"],
+      [data.filter((l) => l.status === "up-and-coming").length, "up and coming"],
+      [data.filter((l) => l.status === "inactive").length, "inactive"],
     ];
-    const frag = document.createDocumentFragment();
-    pills.forEach((p) => {
-      const el = document.createElement("div");
-      el.className = "stat" + (p.cls ? " " + p.cls : "");
-      if (p.dot) {
-        const d = document.createElement("span");
-        d.className = "stat-dot";
-        d.style.background = p.dot;
-        el.appendChild(d);
+    els.stats.replaceChildren();
+    parts.forEach((p, i) => {
+      if (i > 0) {
+        const sep = document.createElement("span");
+        sep.className = "sep";
+        sep.textContent = "·";
+        els.stats.appendChild(sep);
       }
-      const num = document.createElement("span");
-      num.className = "stat-num";
-      num.textContent = formatStars(p.num);
-      const lbl = document.createElement("span");
-      lbl.className = "stat-label";
-      lbl.textContent = p.label;
-      el.append(num, lbl);
-      frag.appendChild(el);
+      const strong = document.createElement("strong");
+      strong.textContent = formatStars(p[0]);
+      els.stats.append(strong, " " + p[1]);
     });
-    els.stats.replaceChildren(frag);
   }
 
   // ---------- status segmented control ----------
@@ -196,25 +179,27 @@
   }
 
   // ---------- card ----------
-  function buildCard(lib, index) {
+  function buildCard(lib) {
     const card = document.createElement("a");
     card.className = "card is-" + lib.status;
     card.href = lib.url;
     card.target = "_blank";
     card.rel = "noopener";
-    card.style.animationDelay = Math.min(index * 12, 260) + "ms";
 
-    // head: name + stars
+    // head: name + stars (stars shown only when the count is known)
     const head = document.createElement("div");
     head.className = "card-head";
     const name = document.createElement("span");
     name.className = "card-name";
     name.textContent = lib.name;
-    const stars = document.createElement("span");
-    stars.className = "card-stars" + (lib.stars == null ? " is-unknown" : "");
-    stars.appendChild(svg(ICON_STAR));
-    stars.appendChild(document.createTextNode(lib.stars == null ? "—" : formatStars(lib.stars)));
-    head.append(name, stars);
+    head.append(name);
+    if (lib.stars != null) {
+      const stars = document.createElement("span");
+      stars.className = "card-stars";
+      stars.appendChild(svg(ICON_STAR));
+      stars.appendChild(document.createTextNode(formatStars(lib.stars)));
+      head.append(stars);
+    }
 
     // meta: category + status
     const metaRow = document.createElement("div");
@@ -236,18 +221,13 @@
     desc.className = "card-desc";
     desc.textContent = lib.description || "No description available.";
 
-    // foot: updated + repo
+    // foot: last updated
     const foot = document.createElement("div");
     foot.className = "card-foot";
-    const updated = document.createElement("span");
-    updated.className = "card-updated";
-    updated.appendChild(svg(ICON_CLOCK));
-    updated.appendChild(document.createTextNode("Updated " + relativeDate(lib.lastCommit)));
-    const repo = document.createElement("span");
-    repo.className = "card-repo";
-    repo.appendChild(document.createTextNode("Repo"));
-    repo.appendChild(svg(ICON_ARROW));
-    foot.append(updated, repo);
+    foot.appendChild(svg(ICON_CLOCK));
+    foot.appendChild(
+      document.createTextNode(lib.lastCommit ? "Updated " + relativeDate(lib.lastCommit) : "Update date unknown")
+    );
 
     card.append(head, metaRow, desc, foot);
     return card;
@@ -298,7 +278,7 @@
     } else {
       els.empty.hidden = true;
       const frag = document.createDocumentFragment();
-      rows.forEach((lib, i) => frag.appendChild(buildCard(lib, i)));
+      rows.forEach((lib) => frag.appendChild(buildCard(lib)));
       els.grid.replaceChildren(frag);
     }
 
@@ -355,25 +335,9 @@
     }
   });
 
-  // ---------- footer ----------
-  function renderFooter() {
-    let txt = data.length + " libraries across " +
-      new Set(data.map((l) => l.category)).size + " categories";
-    if (meta && meta.generatedAt) {
-      const d = new Date(meta.generatedAt);
-      if (!isNaN(d.getTime())) {
-        txt += " · data updated " +
-          d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-      }
-    }
-    txt += " · generated from README.md";
-    els.footerMeta.textContent = txt;
-  }
-
   // ---------- init ----------
   renderStats();
   renderStatusFilter();
   renderCategoryFilter();
-  renderFooter();
   render();
 })();

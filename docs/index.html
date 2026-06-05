@@ -3,122 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Awesome JAX — Explore the JAX ecosystem</title>
-  <meta name="description" content="A curated, searchable index of the JAX ecosystem: neural networks, RL, probabilistic programming, scientific computing, and more." />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Awesome JAX — Explore the JAX ecosystem" />
-  <meta property="og:description" content="A curated, searchable index of the JAX ecosystem." />
-  <meta property="og:type" content="website" />
-
-  <!-- Inline SVG favicon: gradient lambda -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235eead4'/%3E%3Cstop offset='0.5' stop-color='%23818cf8'/%3E%3Cstop offset='1' stop-color='%23c084fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Ctext x='16' y='23' font-size='20' font-family='monospace' font-weight='bold' fill='%230a0e16' text-anchor='middle'%3E%CE%BB%3C/text%3E%3C/svg%3E" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
-
+  <title>Awesome JAX</title>
+  <meta name="description" content="A searchable index of JAX libraries." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="bg-glow" aria-hidden="true"></div>
-
   <header class="site-header">
     <div class="wrap header-top">
-      <a class="brand" href="https://github.com/lockwo/awesome-jax" aria-label="Awesome JAX home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="34" height="34" role="img" aria-hidden="true">
-            <defs>
-              <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#5eead4" />
-                <stop offset="0.5" stop-color="#818cf8" />
-                <stop offset="1" stop-color="#c084fc" />
-              </linearGradient>
-            </defs>
-            <rect width="32" height="32" rx="9" fill="url(#logoGrad)" />
-            <text x="16" y="23" font-size="20" font-family="'JetBrains Mono', monospace" font-weight="700" fill="#0a0e16" text-anchor="middle">&#955;</text>
-          </svg>
-        </span>
-        <span class="brand-text">Awesome <span class="grad-text">JAX</span></span>
-      </a>
-
+      <a class="brand" href="https://github.com/lockwo/awesome-jax">Awesome JAX</a>
       <nav class="header-actions" aria-label="Primary">
-        <a class="btn btn-ghost" href="https://github.com/lockwo/awesome-jax" target="_blank" rel="noopener" aria-label="View the awesome-jax repository on GitHub">
+        <a class="btn" href="https://github.com/lockwo/awesome-jax" target="_blank" rel="noopener" aria-label="View the awesome-jax repository on GitHub">
           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           <span>GitHub</span>
         </a>
-        <a class="btn btn-primary" href="https://github.com/lockwo/awesome-jax/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" aria-label="Add a library — read the contributing guide">
-          <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M8.75 1.75a.75.75 0 0 0-1.5 0V7.25H1.75a.75.75 0 0 0 0 1.5h5.5v5.5a.75.75 0 0 0 1.5 0v-5.5h5.5a.75.75 0 0 0 0-1.5h-5.5z"/></svg>
+        <a class="btn btn-primary" href="https://github.com/lockwo/awesome-jax/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" aria-label="Add a library, read the contributing guide">
           <span>Add a library</span>
         </a>
       </nav>
     </div>
 
     <div class="wrap header-hero">
-      <h1>Explore the <span class="grad-text">JAX</span> ecosystem</h1>
-      <p class="tagline">A curated, searchable index of JAX libraries — from neural networks and RL to probabilistic programming and scientific computing.</p>
-      <div class="stats" id="stats" aria-label="Library statistics"></div>
+      <h1>Awesome JAX</h1>
+      <p class="tagline">A searchable index of JAX libraries.</p>
+      <p class="stats" id="stats" aria-label="Library counts"></p>
     </div>
   </header>
 
-  <section class="controls wrap" aria-label="Search and filters">
-    <label for="search" class="visually-hidden">Search libraries by name, description, or category</label>
-    <div class="search-wrap">
-      <svg class="search-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><line x1="13.5" y1="13.5" x2="18" y2="18" stroke-linecap="round"/></svg>
-      <input id="search" type="search" placeholder="Search libraries by name, description, or category…  ( press / )" autocomplete="off" spellcheck="false" />
-      <button id="clearSearch" class="clear-search" type="button" aria-label="Clear search" hidden>
-        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg>
-      </button>
-    </div>
+  <section class="controls" aria-label="Search and filters">
+    <div class="wrap">
+      <label for="search" class="visually-hidden">Search libraries</label>
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="9" r="6"/><line x1="13.5" y1="13.5" x2="18" y2="18" stroke-linecap="round"/></svg>
+        <input id="search" type="search" placeholder="Search libraries" autocomplete="off" spellcheck="false" />
+        <button id="clearSearch" class="clear-search" type="button" aria-label="Clear search" hidden>
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg>
+        </button>
+      </div>
 
-    <div class="control-row">
-      <div class="status-filter" id="statusFilter" role="group" aria-label="Filter by status"></div>
-      <div class="sort-wrap">
-        <label for="sort">Sort</label>
-        <div class="select-shell">
-          <select id="sort" aria-label="Sort libraries">
-            <option value="stars-desc">Most stars</option>
-            <option value="stars-asc">Fewest stars</option>
-            <option value="name-asc">Name (A–Z)</option>
-            <option value="name-desc">Name (Z–A)</option>
-            <option value="updated-desc">Recently updated</option>
-          </select>
-          <svg class="select-caret" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="control-row">
+        <div class="status-filter" id="statusFilter" role="group" aria-label="Filter by status"></div>
+        <div class="sort-wrap">
+          <label for="sort">Sort</label>
+          <div class="select-shell">
+            <select id="sort" aria-label="Sort libraries">
+              <option value="stars-desc">Most stars</option>
+              <option value="stars-asc">Fewest stars</option>
+              <option value="name-asc">Name (A to Z)</option>
+              <option value="name-desc">Name (Z to A)</option>
+              <option value="updated-desc">Recently updated</option>
+            </select>
+            <svg class="select-caret" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2.5 4.5 6 8l3.5-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="category-filter" id="categoryFilter" role="group" aria-label="Filter by category"></div>
+      <div class="category-filter" id="categoryFilter" role="group" aria-label="Filter by category"></div>
+    </div>
   </section>
 
   <main class="wrap">
     <div class="result-bar">
       <span id="resultCount" class="result-count" aria-live="polite"></span>
-      <button id="clearFilters" class="clear-filters" type="button" hidden>
-        <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg>
-        Clear all filters
-      </button>
+      <button id="clearFilters" class="clear-filters" type="button" hidden>Clear filters</button>
     </div>
 
     <div class="grid" id="grid"></div>
 
     <div class="empty" id="empty" hidden>
       <div class="empty-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="21" y2="21" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16" y1="16" x2="21" y2="21" stroke-linecap="round"/></svg>
       </div>
-      <h2>No libraries match your filters</h2>
+      <h2>No libraries match your filters.</h2>
       <p>Try a different search term or clear your filters.</p>
-      <button class="btn btn-primary" type="button" id="emptyReset">Clear filters</button>
+      <button class="btn" type="button" id="emptyReset">Clear filters</button>
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <p class="footer-meta" id="footerMeta"></p>
+      <p class="footer-meta">Generated from README.md.</p>
       <p class="footer-links">
-        <a href="https://github.com/lockwo/awesome-jax" target="_blank" rel="noopener">Repository</a>
-        <span class="dot">·</span>
-        <a href="https://github.com/lockwo/awesome-jax/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
+        <a href="https://github.com/lockwo/awesome-jax" target="_blank" rel="noopener">GitHub</a>
         <span class="dot">·</span>
         <a href="https://github.com/google/jax" target="_blank" rel="noopener">JAX</a>
       </p>
