@@ -1324,6 +1324,17 @@ const awesomeJaxData = [
     "lastCommit": null
   },
   {
+    "name": "tensorcircuit-ng",
+    "url": "https://github.com/tensorcircuit/tensorcircuit-ng",
+    "owner": "tensorcircuit",
+    "repo": "tensorcircuit-ng",
+    "description": "Differentiable tensor-network-based quantum software framework.",
+    "category": "Physics and Simulation Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
     "name": "Jaxpot",
     "url": "https://github.com/bards-ai/Jaxpot",
     "owner": "bards-ai",
