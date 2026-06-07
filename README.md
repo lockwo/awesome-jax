@@ -129,6 +129,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [unxt](https://github.com/GalacticDynamics/unxt) - Unitful Quantities in JAX. <img src="https://img.shields.io/github/stars/GalacticDynamics/unxt?style=social" align="center">
 - [coordinax](https://github.com/GalacticDynamics/coordinax) - Coordinates in JAX. <img src="https://img.shields.io/github/stars/GalacticDynamics/coordinax?style=social" align="center">
 - [galax](https://github.com/GalacticDynamics/galax) - Galactic and Gravitational Dynamics in Python (+ GPU and autodiff). <img src="https://img.shields.io/github/stars/GalacticDynamics/galax?style=social" align="center">
+- [tensorcircuit-ng](https://github.com/tensorcircuit/tensorcircuit-ng) - Differentiable tensor-network-based quantum software framework. <img src="https://img.shields.io/github/stars/tensorcircuit/tensorcircuit-ng?style=social" align="center">
 
 ### Up and Coming Libraries
 
