@@ -130,7 +130,19 @@ a:hover { text-decoration: underline; }
   border-color: var(--primary-bg);
 }
 .btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
-.theme-toggle { min-width: 4.4rem; justify-content: center; }
+.theme-toggle {
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+}
+.theme-toggle:hover { background: var(--control-hover); }
+.theme-icon { flex: none; }
+.theme-icon-sun { display: none; }
+:root[data-theme="dark"] .theme-icon-moon { display: none; }
+:root[data-theme="dark"] .theme-icon-sun { display: block; }
 
 .header-hero { padding-block: 1.75rem 1.5rem; }
 .header-hero h1 {
