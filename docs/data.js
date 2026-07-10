@@ -1,6 +1,6 @@
 // Auto-generated from README.md — do not edit by hand.
-// Last updated: 2026-07-10T03:51:55.852Z
-// Total libraries: 122
+// Last updated: 2026-07-10T04:00:20.778Z
+// Total libraries: 123
 
 const awesomeJaxData = [
   {
@@ -1165,7 +1165,7 @@ const awesomeJaxData = [
     "repo": "cd_dynamax",
     "description": "Extension of dynamax repo to cases with continuous-time dynamics with measurements sampled at possibly irregular discrete times. Allows generic inference of dynamical systems parameters from partial noisy observations via auto-differentiable filtering, SGD, and HMC.",
     "category": "Time Series, Filtering, and Signal Processing Libraries",
-    "status": "up-and-coming",
+    "status": "active",
     "stars": 20,
     "lastCommit": "2026-02-18T00:01:41Z"
   },
@@ -1176,7 +1176,7 @@ const awesomeJaxData = [
     "repo": "traceax",
     "description": "Stochastic trace estimation using JAX.",
     "category": "Numerical Methods and Linear Algebra Libraries",
-    "status": "up-and-coming",
+    "status": "active",
     "stars": 17,
     "lastCommit": "2025-08-20T22:53:18Z"
   },
@@ -1280,6 +1280,39 @@ const awesomeJaxData = [
     "lastCommit": null
   },
   {
+    "name": "tensorcircuit-ng",
+    "url": "https://github.com/tensorcircuit/tensorcircuit-ng",
+    "owner": "tensorcircuit",
+    "repo": "tensorcircuit-ng",
+    "description": "Differentiable tensor-network-based quantum software framework.",
+    "category": "Physics and Simulation Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "Jaxpot",
+    "url": "https://github.com/bards-ai/Jaxpot",
+    "owner": "bards-ai",
+    "repo": "Jaxpot",
+    "description": "Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation.",
+    "category": "Reinforcement Learning Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
+    "name": "ParamRF",
+    "url": "https://github.com/paramrf/paramrf",
+    "owner": "paramrf",
+    "repo": "paramrf",
+    "description": "Parametric Radio Frequency Modelling, Fitting and Sampling.",
+    "category": "Physics and Simulation Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
     "name": "parax",
     "url": "https://github.com/gvcallen/parax",
     "owner": "gvcallen",
@@ -1313,39 +1346,6 @@ const awesomeJaxData = [
     "lastCommit": null
   },
   {
-    "name": "ParamRF",
-    "url": "https://github.com/paramrf/paramrf",
-    "owner": "paramrf",
-    "repo": "paramrf",
-    "description": "Parametric Radio Frequency Modelling, Fitting and Sampling.",
-    "category": "Physics and Simulation Libraries",
-    "status": "up-and-coming",
-    "stars": null,
-    "lastCommit": null
-  },
-  {
-    "name": "tensorcircuit-ng",
-    "url": "https://github.com/tensorcircuit/tensorcircuit-ng",
-    "owner": "tensorcircuit",
-    "repo": "tensorcircuit-ng",
-    "description": "Differentiable tensor-network-based quantum software framework.",
-    "category": "Physics and Simulation Libraries",
-    "status": "active",
-    "stars": null,
-    "lastCommit": null
-  },
-  {
-    "name": "Jaxpot",
-    "url": "https://github.com/bards-ai/Jaxpot",
-    "owner": "bards-ai",
-    "repo": "Jaxpot",
-    "description": "Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation.",
-    "category": "Reinforcement Learning Libraries",
-    "status": "up-and-coming",
-    "stars": null,
-    "lastCommit": null
-  },
-  {
     "name": "neojax",
     "url": "https://github.com/paulgekeler/neojax",
     "owner": "paulgekeler",
@@ -1359,10 +1359,10 @@ const awesomeJaxData = [
 ];
 
 const awesomeJaxMeta = {
-  "generatedAt": "2026-07-10T03:51:55.852Z",
-  "total": 122,
-  "active": 89,
-  "upAndComing": 11,
+  "generatedAt": "2026-07-10T04:00:20.778Z",
+  "total": 123,
+  "active": 94,
+  "upAndComing": 7,
   "inactive": 22,
   "categories": 20
 };
