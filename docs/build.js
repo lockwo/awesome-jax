@@ -3,35 +3,26 @@ const fs = require('fs').promises;
 const path = require('path');
 const https = require('https');
 
-// Configuration
 const README_PATH = path.join(__dirname, '..', 'README.md');
 const OUTPUT_PATH = path.join(__dirname, 'data.js');
 const CACHE_PATH = path.join(__dirname, '.github-cache.json');
 const CATEGORIES_PATH = path.join(__dirname, 'categories.json');
-const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+const CACHE_TTL = 60 * 60 * 1000;
+const REQUEST_TIMEOUT = 15000;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-// Parse command line arguments
 const args = process.argv.slice(2);
 const noGithub = args.includes('--no-github');
 const noCache = args.includes('--no-cache');
 
-// Category resolution (README is never modified by this script):
-//   1. Libraries indented under a "- X Libraries" header in the README take that
-//      header as their category (the existing top-level categories).
-//   2. Everything else (the flat list, Up-and-Coming, Inactive) is categorized
-//      via docs/categories.json — a website-only map of "owner/repo" -> category.
-//   3. Anything still unmatched falls back to "Other".
-// Status is derived from the "### Up and Coming" / "### Inactive" sub-headers.
 let CATEGORY_OVERRIDES = {};
 try {
   const raw = JSON.parse(require('fs').readFileSync(CATEGORIES_PATH, 'utf8'));
   CATEGORY_OVERRIDES = raw.categories || raw || {};
-} catch {
-  console.warn('⚠️  Could not read categories.json — flat libraries will be "Other"');
+} catch (error) {
+  console.warn(`Could not read categories.json: ${error.message}`);
 }
 
-// Helper function to make HTTPS requests (follows redirects)
 function httpsRequest(url, options = {}, redirectCount = 0) {
   if (redirectCount > 5) {
     return Promise.reject(new Error('Too many redirects'));
@@ -48,10 +39,10 @@ function httpsRequest(url, options = {}, redirectCount = 0) {
       }
     };
 
-    https.get(requestOptions, (res) => {
+    const request = https.get(requestOptions, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        // Resolve relative redirect targets against the current URL.
         const nextUrl = new URL(res.headers.location, url).toString();
+        res.resume();
         resolve(httpsRequest(nextUrl, options, redirectCount + 1));
         return;
       }
@@ -68,57 +59,52 @@ function httpsRequest(url, options = {}, redirectCount = 0) {
           reject(new Error(`HTTP ${res.statusCode}: ${data}`));
         }
       });
-    }).on('error', reject);
+    });
+    request.setTimeout(REQUEST_TIMEOUT, () => {
+      request.destroy(new Error(`Request timed out after ${REQUEST_TIMEOUT}ms`));
+    });
+    request.on('error', reject);
   });
 }
 
-// Fetch GitHub data for a repository
 async function fetchGithubData(owner, repo) {
-  const headers = GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {};
-
-  try {
-    // Fetch repo data
-    const repoUrl = `https://api.github.com/repos/${owner}/${repo}`;
-    const repoData = await httpsRequest(repoUrl, { headers });
-
-    // Fetch latest commit
-    const commitsUrl = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=1`;
-    const commitsData = await httpsRequest(commitsUrl, { headers });
-
-    return {
-      stars: repoData.stargazers_count,
-      lastCommit: commitsData[0]?.commit?.committer?.date || null
-    };
-  } catch (error) {
-    console.error(`  ⚠️  Failed to fetch ${owner}/${repo}: ${error.message}`);
-    return null;
+  const headers = GITHUB_TOKEN ? { 'Authorization': `Bearer ${GITHUB_TOKEN}` } : {};
+  const repoUrl = `https://api.github.com/repos/${owner}/${repo}`;
+  const repoData = await httpsRequest(repoUrl, { headers });
+  if (!Number.isInteger(repoData.stargazers_count) || !repoData.default_branch) {
+    throw new Error('Repository response is missing stars or default branch');
   }
+
+  const branch = encodeURIComponent(repoData.default_branch);
+  const commitsUrl = `https://api.github.com/repos/${owner}/${repo}/commits?sha=${branch}&per_page=1`;
+  const commitsData = await httpsRequest(commitsUrl, { headers });
+  const lastCommit = commitsData[0]?.commit?.committer?.date;
+  if (!lastCommit || Number.isNaN(new Date(lastCommit).getTime())) {
+    throw new Error('Commit response is missing a valid date');
+  }
+
+  return { stars: repoData.stargazers_count, lastCommit };
 }
 
-// Load cache
 async function loadCache() {
   if (noCache) return { data: {}, timestamp: 0 };
 
   try {
     const cacheContent = await fs.readFile(CACHE_PATH, 'utf8');
     return JSON.parse(cacheContent);
-  } catch {
-    return { data: {}, timestamp: 0 };
-  }
-}
-
-// Save cache
-async function saveCache(cache) {
-  if (noGithub) return; // Don't save cache in no-github mode
-
-  try {
-    await fs.writeFile(CACHE_PATH, JSON.stringify(cache, null, 2));
   } catch (error) {
-    console.error('Failed to save cache:', error.message);
+    if (error.code === 'ENOENT') return { data: {}, timestamp: 0 };
+    throw error;
   }
 }
 
-// Parse README and extract libraries
+async function saveCache(cache) {
+  if (noGithub) return;
+  const tempPath = `${CACHE_PATH}.tmp`;
+  await fs.writeFile(tempPath, JSON.stringify(cache, null, 2));
+  await fs.rename(tempPath, CACHE_PATH);
+}
+
 async function parseReadme() {
   const content = await fs.readFile(README_PATH, 'utf8');
   const lines = content.split('\n');
@@ -131,7 +117,6 @@ async function parseReadme() {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    // Enter the Libraries section
     if (line.trim() === '## Libraries') {
       inLibrarySection = true;
       currentStatus = 'active';
@@ -139,7 +124,6 @@ async function parseReadme() {
       continue;
     }
 
-    // Exit when we hit the next major (H2) section
     if (line.startsWith('## ') && line.trim() !== '## Libraries') {
       inLibrarySection = false;
       continue;
@@ -147,8 +131,6 @@ async function parseReadme() {
 
     if (!inLibrarySection) continue;
 
-    // Status sub-sections (H3 headers). Each one resets the active category so
-    // libraries don't inherit a category from the previous section.
     if (/^###\s+Up[\s-]and[\s-]Coming/i.test(line)) {
       currentStatus = 'up-and-coming';
       currentCategory = null;
@@ -159,33 +141,32 @@ async function parseReadme() {
       currentCategory = null;
       continue;
     }
-    // Any other H3 (e.g. a future "### Active Libraries") just resets category.
     if (line.startsWith('### ')) {
       currentCategory = null;
       continue;
     }
 
-    // Category header: a top-level bullet ending in "Libraries" that is not a link.
     const categoryMatch = line.match(/^- (.+ Libraries)\s*$/);
     if (categoryMatch && !line.includes('](')) {
       currentCategory = categoryMatch[1].trim();
       continue;
     }
 
-    // Library entry (at any indentation level).
     const libraryMatch = line.match(/^(\s*)- \[([^\]]+)\]\(([^)]+)\)(?:\s*-\s*(.+))?/);
     if (libraryMatch) {
       const [, indentStr, name, url, restOfLine] = libraryMatch;
       const indent = indentStr.length;
 
-      // Extract GitHub owner/repo from URL
-      const githubMatch = url.match(/github\.com\/([^/]+)\/([^/?#]+)/);
-      if (githubMatch) {
-        const [, owner, repo] = githubMatch;
-        const repoKey = `${owner}/${repo.replace(/[#?].*$/, '').replace(/\/$/, '')}`;
+      let parsedUrl;
+      try {
+        parsedUrl = new URL(url);
+      } catch {
+        continue;
+      }
+      const [owner, repo] = parsedUrl.pathname.split('/').filter(Boolean);
+      if (parsedUrl.protocol === 'https:' && parsedUrl.hostname === 'github.com' && owner && repo) {
+        const repoKey = `${owner}/${repo}`;
 
-        // Status comes from the current sub-section, but an inline shields.io
-        // badge (legacy format) takes precedence if present.
         let status = currentStatus;
         if (line.includes('inactive-red')) {
           status = 'inactive';
@@ -193,10 +174,6 @@ async function parseReadme() {
           status = 'up-and-coming';
         }
 
-        // Category precedence:
-        //   inline <!--cat:X--> tag  >  README header (if indented under one)
-        //   >  categories.json override  >  "Other".
-        // Flat (un-indented) libraries never inherit a header's category.
         let category;
         const catTag = line.match(/<!--\s*cat:\s*([^>]+?)\s*-->/i);
         if (catTag) {
@@ -207,8 +184,6 @@ async function parseReadme() {
           category = CATEGORY_OVERRIDES[repoKey] || 'Other';
         }
 
-        // Clean description: strip HTML comments and image badges, flatten any
-        // markdown links ([text](url) -> text), then collapse whitespace.
         const cleanDesc = restOfLine
           ? restOfLine
               .replace(/<!--[\s\S]*?-->/g, '')
@@ -222,7 +197,7 @@ async function parseReadme() {
           name: name.trim(),
           url,
           owner,
-          repo: repo.replace(/[#?].*$/, '').replace(/\/$/, ''), // strip anchors/queries/trailing slash
+          repo,
           description: cleanDesc,
           category,
           status,
@@ -236,46 +211,24 @@ async function parseReadme() {
   return libraries;
 }
 
-// Main build function
 async function build() {
   try {
-    console.log('🚀 Building awesome-jax data...\n');
-
-    // Parse README
-    console.log('📖 Reading README.md...');
+    console.log('Building awesome-jax data');
     const libraries = await parseReadme();
-    console.log(`✅ Found ${libraries.length} libraries\n`);
+    console.log(`Found ${libraries.length} libraries`);
 
-    // Load cache
     const cache = await loadCache();
     const now = Date.now();
     const cacheExpired = now - cache.timestamp > CACHE_TTL;
 
-    // Fetch GitHub data if enabled
     if (!noGithub) {
-      console.log('🔍 Fetching GitHub data...');
-      if (GITHUB_TOKEN) {
-        console.log('✅ GitHub token detected - using higher rate limits');
-      } else {
-        console.log('⚠️  No GitHub token detected - using lower rate limits');
-        console.log('   Set GITHUB_TOKEN environment variable for 50x faster fetching');
-      }
-
-      // Determine batch size based on token availability
-      const BATCH_SIZE = GITHUB_TOKEN ? 10 : 3; // Parallel requests per batch
-      const BATCH_DELAY = GITHUB_TOKEN ? 200 : 2000; // Delay between batches
-
-      let fetchCount = 0;
       let cacheHits = 0;
-      let toFetch = [];
-
-      // First, identify what needs fetching
+      const toFetch = [];
       for (const lib of libraries) {
         const cacheKey = `${lib.owner}/${lib.repo}`;
-
-        // Check cache
         const cached = cache.data[cacheKey];
-        if (cached && !cacheExpired) {
+        const cacheValid = Number.isInteger(cached?.stars) && !Number.isNaN(new Date(cached?.lastCommit).getTime());
+        if (cacheValid && !cacheExpired) {
           lib.stars = cached.stars;
           lib.lastCommit = cached.lastCommit;
           cacheHits++;
@@ -284,102 +237,86 @@ async function build() {
         }
       }
 
-      console.log(`📊 Status: ${cacheHits} from cache, ${toFetch.length} to fetch`);
-
       if (toFetch.length > 0) {
-        console.log(`🚀 Fetching in parallel (batch size: ${BATCH_SIZE})...\n`);
+        if (!GITHUB_TOKEN) {
+          throw new Error('GITHUB_TOKEN is required to refresh GitHub metadata');
+        }
 
-        // Process in batches
-        for (let i = 0; i < toFetch.length; i += BATCH_SIZE) {
-          const batch = toFetch.slice(i, i + BATCH_SIZE);
-          const batchNum = Math.floor(i / BATCH_SIZE) + 1;
-          const totalBatches = Math.ceil(toFetch.length / BATCH_SIZE);
-
-          console.log(`  Batch ${batchNum}/${totalBatches}: Fetching ${batch.map(l => l.name).join(', ')}...`);
-
-          // Fetch batch in parallel
-          const promises = batch.map(async (lib) => {
-            const data = await fetchGithubData(lib.owner, lib.repo);
-            if (data) {
+        const batchSize = 10;
+        const failures = [];
+        console.log(`Refreshing ${toFetch.length} repositories (${cacheHits} cached)`);
+        for (let i = 0; i < toFetch.length; i += batchSize) {
+          const batch = toFetch.slice(i, i + batchSize);
+          const results = await Promise.all(batch.map(async (lib) => {
+            try {
+              const data = await fetchGithubData(lib.owner, lib.repo);
               lib.stars = data.stars;
               lib.lastCommit = data.lastCommit;
               const cacheKey = `${lib.owner}/${lib.repo}`;
               cache.data[cacheKey] = { stars: data.stars, lastCommit: data.lastCommit };
-              return { lib: lib.name, success: true };
-            } else {
-              return { lib: lib.name, success: false };
+              return null;
+            } catch (error) {
+              return `${lib.owner}/${lib.repo}: ${error.message}`;
             }
-          });
-
-          const results = await Promise.all(promises);
-
-          const successful = results.filter(r => r.success).length;
-          const failed = results.filter(r => !r.success).length;
-
-          console.log(`    ✓ Completed: ${successful} successful${failed > 0 ? `, ${failed} failed` : ''}`);
-          fetchCount += batch.length;
-
-          // Delay between batches to respect rate limits
-          if (i + BATCH_SIZE < toFetch.length) {
-            if (!GITHUB_TOKEN && batchNum % 3 === 0) {
-              console.log(`  ⏸️  Pausing to respect rate limits...`);
-              await new Promise(resolve => setTimeout(resolve, 5000));
-            } else {
-              await new Promise(resolve => setTimeout(resolve, BATCH_DELAY));
-            }
+          }));
+          failures.push(...results.filter(Boolean));
+          console.log(`Refreshed ${Math.min(i + batch.length, toFetch.length)}/${toFetch.length}`);
+          if (i + batchSize < toFetch.length) {
+            await new Promise(resolve => setTimeout(resolve, 200));
           }
         }
+        if (failures.length > 0) {
+          throw new Error(`GitHub refresh failed:\n${failures.join('\n')}`);
+        }
+        cache.timestamp = now;
+        await saveCache(cache);
       }
-
-      cache.timestamp = now;
-      await saveCache(cache);
     } else {
-      console.log('⏩ Skipping GitHub fetch (--no-github) — reusing cached values where available\n');
       let cacheHits = 0;
       for (const lib of libraries) {
         const cached = cache.data[`${lib.owner}/${lib.repo}`];
-        if (cached) {
+        if (Number.isInteger(cached?.stars) && !Number.isNaN(new Date(cached?.lastCommit).getTime())) {
           lib.stars = cached.stars;
           lib.lastCommit = cached.lastCommit;
           cacheHits++;
         }
       }
-      console.log(`📊 Applied cached GitHub data to ${cacheHits}/${libraries.length} libraries`);
+      const cacheDate = cache.timestamp ? new Date(cache.timestamp).toISOString() : 'unknown';
+      console.log(`Using cached metadata for ${cacheHits}/${libraries.length} libraries from ${cacheDate}`);
     }
 
-    // Sort libraries by stars (descending)
-    libraries.sort((a, b) => (b.stars || 0) - (a.stars || 0));
+    libraries.sort((a, b) => {
+      if (a.stars == null) return b.stars == null ? a.name.localeCompare(b.name) : 1;
+      if (b.stars == null) return -1;
+      return b.stars - a.stars || a.name.localeCompare(b.name);
+    });
 
-    // Generate output
-    console.log('\n📝 Generating data.js...');
     const generatedAt = new Date().toISOString();
     const meta = {
       generatedAt,
+      metadataAsOf: cache.timestamp ? new Date(cache.timestamp).toISOString() : null,
       total: libraries.length,
       active: libraries.filter(l => l.status === 'active').length,
       upAndComing: libraries.filter(l => l.status === 'up-and-coming').length,
       inactive: libraries.filter(l => l.status === 'inactive').length,
       categories: [...new Set(libraries.map(l => l.category))].sort().length
     };
-    const output = `// Auto-generated from README.md — do not edit by hand.
-// Last updated: ${generatedAt}
-// Total libraries: ${libraries.length}
+    const output = `// Generated by build.js. Do not edit.
 
 const awesomeJaxData = ${JSON.stringify(libraries, null, 2)};
 
 const awesomeJaxMeta = ${JSON.stringify(meta, null, 2)};
 
-// Make available for browser
 if (typeof window !== 'undefined') {
   window.awesomeJaxData = awesomeJaxData;
   window.awesomeJaxMeta = awesomeJaxMeta;
 }
 `;
 
-    await fs.writeFile(OUTPUT_PATH, output);
-    console.log(`✅ Generated ${OUTPUT_PATH}`);
+    const tempOutputPath = `${OUTPUT_PATH}.tmp`;
+    await fs.writeFile(tempOutputPath, output);
+    await fs.rename(tempOutputPath, OUTPUT_PATH);
 
-    // Summary
     const stats = {
       total: libraries.length,
       active: libraries.filter(l => l.status === 'active').length,
@@ -387,25 +324,13 @@ if (typeof window !== 'undefined') {
       upAndComing: libraries.filter(l => l.status === 'up-and-coming').length,
       withStars: libraries.filter(l => l.stars !== null).length
     };
-
-    console.log('\n📊 Summary:');
-    console.log(`  Total: ${stats.total} libraries`);
-    console.log(`  Active: ${stats.active}`);
-    console.log(`  Inactive: ${stats.inactive}`);
-    console.log(`  Up and Coming: ${stats.upAndComing}`);
-    if (!noGithub) {
-      console.log(`  With GitHub data: ${stats.withStars}`);
-    }
-
-    console.log('\n✨ Build complete!');
-    console.log('   Run "npm run serve" to view the site locally');
-
+    console.log(`Wrote ${OUTPUT_PATH}`);
+    console.log(`${stats.total} total, ${stats.active} active, ${stats.upAndComing} up and coming, ${stats.inactive} inactive, ${stats.withStars} with GitHub metadata`);
   } catch (error) {
-    console.error('❌ Build failed:', error.message);
+    console.error('Build failed:', error.message);
     console.error(error.stack);
     process.exit(1);
   }
 }
 
-// Run build
 build();

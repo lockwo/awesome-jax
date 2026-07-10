@@ -1,0 +1,20 @@
+{
+  "name": "awesome-jax-web",
+  "version": "1.0.0",
+  "description": "Interactive web version of awesome-jax",
+  "scripts": {
+    "build": "node build.js",
+    "build:fast": "node build.js --no-github",
+    "build:fresh": "node build.js --no-cache",
+    "serve": "npx http-server . -p 8080 -c-1",
+    "dev": "npm run serve",
+    "dev:full": "npm run build && npm run serve"
+  },
+  "devDependencies": {
+    "prettier": "3.5.0",
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "awesome-lint": "^1.2.0"
+  }
+}

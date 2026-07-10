@@ -1,8 +1,3 @@
-/* ============================================================
-   Awesome JAX library explorer
-   Clean, flat, light theme. No external fonts or dependencies.
-   ============================================================ */
-
 :root {
   --bg: #ffffff;
   --canvas: #f6f8fa;
@@ -34,6 +29,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 body {
   margin: 0;
@@ -55,7 +51,6 @@ a:hover { text-decoration: underline; }
   padding-inline: clamp(1rem, 4vw, 2rem);
 }
 
-/* ---------------- Header ---------------- */
 .site-header {
   border-bottom: 1px solid var(--border);
   background: var(--bg);
@@ -115,7 +110,6 @@ a:hover { text-decoration: underline; }
 .stats .sep { color: var(--border); padding-inline: 0.45rem; }
 .stats strong { color: var(--text); font-weight: 600; }
 
-/* ---------------- Controls ---------------- */
 .controls {
   position: sticky;
   top: 0;
@@ -147,8 +141,8 @@ a:hover { text-decoration: underline; }
   right: 0.6rem;
   display: grid;
   place-items: center;
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -166,7 +160,6 @@ a:hover { text-decoration: underline; }
   margin-top: 0.75rem;
 }
 
-/* Status segmented control */
 .status-filter {
   display: inline-flex;
   border: 1px solid var(--border);
@@ -196,7 +189,6 @@ a:hover { text-decoration: underline; }
 .seg-count { color: var(--text-subtle); font-variant-numeric: tabular-nums; }
 .seg-btn[aria-pressed="true"] .seg-count { color: var(--accent); }
 
-/* Sort */
 .sort-wrap { display: inline-flex; align-items: center; gap: 0.5rem; }
 .sort-wrap label { color: var(--text-muted); font-size: 0.85rem; }
 .select-shell { position: relative; display: inline-flex; align-items: center; }
@@ -217,7 +209,6 @@ a:hover { text-decoration: underline; }
 #sort:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-bg); }
 .select-caret { position: absolute; right: 0.6rem; color: var(--text-subtle); pointer-events: none; }
 
-/* Category chips */
 .category-filter { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.75rem; }
 .chip {
   display: inline-flex;
@@ -244,7 +235,6 @@ a:hover { text-decoration: underline; }
 }
 .chip[aria-pressed="true"] .chip-count { color: var(--accent); }
 
-/* ---------------- Result bar ---------------- */
 .result-bar {
   display: flex;
   align-items: center;
@@ -271,7 +261,6 @@ a:hover { text-decoration: underline; }
 }
 .clear-filters:hover { background: var(--canvas); color: var(--text); }
 
-/* ---------------- Grid + cards ---------------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -291,12 +280,12 @@ a:hover { text-decoration: underline; }
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .card:hover { border-color: var(--text-subtle); box-shadow: var(--shadow-hover); text-decoration: none; }
-.card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .card.is-inactive { background: var(--canvas); }
 
 .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
-.card-name { font-size: 1rem; font-weight: 600; color: var(--text); word-break: break-word; }
-.card:hover .card-name { color: var(--accent); }
+.card-name { margin: 0; font-size: 1rem; font-weight: 600; word-break: break-word; }
+.card-name a { color: var(--text); }
+.card-name a:hover { color: var(--accent); }
 .card-stars {
   display: inline-flex;
   align-items: center;
@@ -349,18 +338,18 @@ a:hover { text-decoration: underline; }
   color: var(--text-subtle);
 }
 .card-foot svg { color: var(--text-subtle); }
+.card.is-inactive .card-foot,
+.card.is-inactive .card-foot svg { color: var(--text-muted); }
 
 .dot-active { background: var(--active); }
 .dot-up-and-coming { background: var(--upcoming); }
 .dot-inactive { background: var(--inactive); }
 
-/* ---------------- Empty state ---------------- */
 .empty { text-align: center; padding: 3.5rem 1rem 4.5rem; color: var(--text-muted); }
 .empty-icon { color: var(--text-subtle); margin-bottom: 0.75rem; }
 .empty h2 { margin: 0 0 0.35rem; font-size: 1.2rem; color: var(--text); font-weight: 600; }
 .empty p { margin: 0 0 1.25rem; }
 
-/* ---------------- Footer ---------------- */
 .site-footer { border-top: 1px solid var(--border); background: var(--bg); }
 .footer-inner {
   display: flex;
@@ -375,20 +364,24 @@ a:hover { text-decoration: underline; }
 .footer-links a { color: var(--accent); font-weight: 500; }
 .footer-links .dot { color: var(--border); margin-inline: 0.5rem; }
 
-/* ---------------- Focus ---------------- */
 .btn:focus-visible,
 .brand:focus-visible,
-.seg-btn:focus-visible,
 .chip:focus-visible,
 #sort:focus-visible,
 .clear-filters:focus-visible,
 .clear-search:focus-visible,
+.card-name a:focus-visible,
 .footer-links a:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+.seg-btn:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
 
-/* ---------------- Utilities ---------------- */
 .visually-hidden {
   position: absolute;
   width: 1px; height: 1px;
@@ -399,16 +392,36 @@ a:hover { text-decoration: underline; }
   border: 0;
 }
 
-/* ---------------- Responsive ---------------- */
+@media (max-width: 900px) {
+  .category-filter {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0.2rem 0 0.45rem;
+  }
+  .chip { flex: none; }
+}
+
 @media (max-width: 640px) {
-  .header-actions .btn span { display: none; }
+  .header-actions .btn:not(.btn-primary) span { display: none; }
   .control-row { gap: 0.6rem; }
   .sort-wrap { width: 100%; justify-content: space-between; }
   .status-filter { width: 100%; }
-  .seg-btn { flex: 1; justify-content: center; padding: 0.4rem 0.3rem; }
+  .btn,
+  .seg-btn,
+  #sort,
+  .chip,
+  .clear-filters { min-height: 44px; }
+  .seg-btn { flex: 1; justify-content: center; padding-inline: 0.3rem; }
   .seg-btn .seg-count { display: none; }
   .grid { grid-template-columns: 1fr; }
-  .category-filter { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 0.35rem; }
+}
+
+@media (pointer: coarse) {
+  .clear-search {
+    width: 44px;
+    height: 44px;
+    right: 0.2rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

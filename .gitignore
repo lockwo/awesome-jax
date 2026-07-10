@@ -1,5 +1,3 @@
 /docs/node_modules
-/docs/package*
 .DS_Store
-.github-cache.json
-.claude
+/docs/.github-cache.json

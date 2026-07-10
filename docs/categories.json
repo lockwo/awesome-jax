@@ -1,5 +1,4 @@
 {
-  "//": "Website-only category assignments for the Awesome JAX explorer. README.md is the source of truth for the library list; this file ONLY assigns a category (for the site filter) to libraries that are not under one of the README category headers. Key = GitHub owner/repo, value = category. Libraries listed under a README category header are categorized by that header and need no entry here.",
   "categories": {
     "DifferentiableUniverseInitiative/jax_cosmo": "Astrophysics and Cosmology Libraries",
     "GalacticDynamics/galax": "Astrophysics and Cosmology Libraries",
