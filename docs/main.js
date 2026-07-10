@@ -8,8 +8,13 @@
     stats: document.getElementById("stats"),
     search: document.getElementById("search"),
     clearSearch: document.getElementById("clearSearch"),
+    themeToggle: document.getElementById("themeToggle"),
+    themeToggleLabel: document.getElementById("themeToggleLabel"),
     statusFilter: document.getElementById("statusFilter"),
     sort: document.getElementById("sort"),
+    controls: document.querySelector(".controls"),
+    categoryToggle: document.getElementById("categoryToggle"),
+    categoryToggleLabel: document.getElementById("categoryToggleLabel"),
     categoryFilter: document.getElementById("categoryFilter"),
     grid: document.getElementById("grid"),
     empty: document.getElementById("empty"),
@@ -18,6 +23,37 @@
     clearFilters: document.getElementById("clearFilters"),
     footerMeta: document.getElementById("footerMeta"),
   };
+
+  const THEME_STORAGE_KEY = "awesome-jax-theme";
+
+  function getTheme() {
+    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  }
+
+  function syncThemeToggle() {
+    const theme = getTheme();
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    els.themeToggleLabel.textContent = nextTheme === "dark" ? "Dark" : "Light";
+    els.themeToggle.setAttribute("aria-label", "Switch to " + nextTheme + " mode");
+    els.themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+  }
+
+  function setTheme(theme) {
+    if (theme === "dark") {
+      document.documentElement.dataset.theme = "dark";
+    } else {
+      delete document.documentElement.dataset.theme;
+    }
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (error) {}
+    syncThemeToggle();
+  }
+
+  els.themeToggle.addEventListener("click", () => {
+    setTheme(getTheme() === "dark" ? "light" : "dark");
+  });
+  syncThemeToggle();
 
   if (!data.length) {
     els.grid.innerHTML = "";
@@ -36,6 +72,8 @@
   const STATUS_ORDER = ["active", "up-and-coming", "inactive"];
 
   const state = { query: "", status: null, category: null, sort: "stars-desc" };
+  let controlsCompact = false;
+  let categoriesOpen = true;
 
   function shortCategory(cat) {
     return cat.replace(/\s+Libraries$/, "");
@@ -182,6 +220,7 @@
       state.category = state.category === value ? null : value;
       syncCategoryFilter();
       render();
+      if (controlsCompact) setCategoriesOpen(false);
     });
     return btn;
   }
@@ -189,6 +228,33 @@
     els.categoryFilter.querySelectorAll(".chip").forEach((b) => {
       b.setAttribute("aria-pressed", String((b.dataset.value || null) === state.category));
     });
+    updateCategoryToggle();
+  }
+
+  function updateCategoryToggle() {
+    const label = state.category ? "Category: " + shortCategory(state.category) : "Categories";
+    els.categoryToggleLabel.textContent = label;
+    els.categoryToggle.setAttribute("aria-expanded", String(!controlsCompact || categoriesOpen));
+    els.categoryToggle.hidden = !controlsCompact;
+    els.categoryFilter.hidden = controlsCompact && !categoriesOpen;
+  }
+
+  function setCategoriesOpen(open) {
+    categoriesOpen = open;
+    els.controls.classList.toggle("is-categories-open", categoriesOpen);
+    updateCategoryToggle();
+  }
+
+  function updateCompactControls() {
+    const shouldCompact = window.scrollY > 120;
+    if (shouldCompact === controlsCompact) {
+      updateCategoryToggle();
+      return;
+    }
+
+    controlsCompact = shouldCompact;
+    els.controls.classList.toggle("is-compact", controlsCompact);
+    setCategoriesOpen(!controlsCompact);
   }
 
   function buildCard(lib) {
@@ -330,8 +396,11 @@
     render();
   });
   els.sort.addEventListener("change", (e) => { state.sort = e.target.value; render(); });
+  els.categoryToggle.addEventListener("click", () => setCategoriesOpen(!categoriesOpen));
   els.clearFilters.addEventListener("click", resetFilters);
   if (els.emptyReset) els.emptyReset.addEventListener("click", resetFilters);
+  window.addEventListener("scroll", updateCompactControls, { passive: true });
+  window.addEventListener("resize", updateCompactControls);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "/" && document.activeElement !== els.search) {
@@ -350,5 +419,6 @@
   renderFooterMeta();
   renderStatusFilter();
   renderCategoryFilter();
+  updateCompactControls();
   render();
 })();

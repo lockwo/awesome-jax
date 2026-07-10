@@ -78,6 +78,7 @@
     "ucl-bug/jwave": "Physics and Simulation Libraries",
     "ymahlau/fdtdx": "Physics and Simulation Libraries",
     "dynamiqs/dynamiqs": "Quantum Computing Libraries",
+    "Quantinuum/qujax": "Quantum Computing Libraries",
     "bards-ai/Jaxpot": "Reinforcement Learning Libraries",
     "coax-dev/coax": "Reinforcement Learning Libraries",
     "google-deepmind/mctx": "Reinforcement Learning Libraries",

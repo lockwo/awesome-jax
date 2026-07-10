@@ -1003,6 +1003,17 @@ const awesomeJaxData = [
     "lastCommit": "2026-07-01T04:03:43Z"
   },
   {
+    "name": "qujax",
+    "url": "https://github.com/Quantinuum/qujax",
+    "owner": "Quantinuum",
+    "repo": "qujax",
+    "description": "Simulating quantum circuits with JAX.",
+    "category": "Quantum Computing Libraries",
+    "status": "active",
+    "stars": 75,
+    "lastCommit": "2026-06-23T09:53:34Z"
+  },
+  {
     "name": "exojax",
     "url": "https://github.com/HajimeKawahara/exojax",
     "owner": "HajimeKawahara",
@@ -1357,10 +1368,10 @@ const awesomeJaxData = [
 ];
 
 const awesomeJaxMeta = {
-  "generatedAt": "2026-07-10T04:33:22.202Z",
+  "generatedAt": "2026-07-10T20:43:11.499Z",
   "metadataAsOf": "2026-07-10T04:33:04.614Z",
-  "total": 123,
-  "active": 94,
+  "total": 124,
+  "active": 95,
   "upAndComing": 7,
   "inactive": 22,
   "categories": 20

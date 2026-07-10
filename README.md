@@ -91,6 +91,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [optax](https://github.com/google-deepmind/optax) - Optax is a gradient processing and optimization library for JAX. <img src="https://img.shields.io/github/stars/google-deepmind/optax?style=social" align="center">
 - [dynamax](https://github.com/probml/dynamax) - State Space Models library in JAX. <img src="https://img.shields.io/github/stars/probml/dynamax?style=social" align="center">
 - [dynamiqs](https://github.com/dynamiqs/dynamiqs) - High-performance quantum systems simulation with JAX (GPU-accelerated & differentiable solvers). <img src="https://img.shields.io/github/stars/dynamiqs/dynamiqs?style=social" align="center">
+- [qujax](https://github.com/Quantinuum/qujax) - Simulating quantum circuits with JAX. <img src="https://img.shields.io/github/stars/Quantinuum/qujax?style=social" align="center">
 - [scico](https://github.com/lanl/scico) - Scientific Computational Imaging COde. <img src="https://img.shields.io/github/stars/lanl/scico?style=social" align="center">
 - [exojax](https://github.com/HajimeKawahara/exojax) - 🐈 Automatic differentiable spectrum modeling of exoplanets/brown dwarfs using JAX, compatible with NumPyro and Optax/JAXopt. <img src="https://img.shields.io/github/stars/HajimeKawahara/exojax?style=social" align="center">
 - [PGMax](https://github.com/google-deepmind/PGMax) - Loopy belief propagation for factor graphs on discrete variables in JAX. <img src="https://img.shields.io/github/stars/google-deepmind/PGMax?style=social" align="center">
