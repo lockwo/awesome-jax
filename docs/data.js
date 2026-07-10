@@ -1,6 +1,6 @@
 // Auto-generated from README.md — do not edit by hand.
-// Last updated: 2026-06-04T23:02:48.376Z
-// Total libraries: 121
+// Last updated: 2026-07-10T03:51:55.852Z
+// Total libraries: 122
 
 const awesomeJaxData = [
   {
@@ -1344,14 +1344,25 @@ const awesomeJaxData = [
     "status": "up-and-coming",
     "stars": null,
     "lastCommit": null
+  },
+  {
+    "name": "neojax",
+    "url": "https://github.com/paulgekeler/neojax",
+    "owner": "paulgekeler",
+    "repo": "neojax",
+    "description": "Neural Operators in JAX.",
+    "category": "Neural Network Libraries",
+    "status": "up-and-coming",
+    "stars": null,
+    "lastCommit": null
   }
 ];
 
 const awesomeJaxMeta = {
-  "generatedAt": "2026-06-04T23:02:48.376Z",
-  "total": 121,
+  "generatedAt": "2026-07-10T03:51:55.852Z",
+  "total": 122,
   "active": 89,
-  "upAndComing": 10,
+  "upAndComing": 11,
   "inactive": 22,
   "categories": 20
 };

@@ -143,6 +143,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [diffraxtra](https://github.com/GalacticDynamics/diffraxtra) - Extras for Diffrax: OOP and vectorization. <img src="https://img.shields.io/github/stars/GalacticDynamics/diffraxtra?style=social" align="center">
 - [ParamRF](https://github.com/paramrf/paramrf) - Parametric Radio Frequency Modelling, Fitting and Sampling. <img src="https://img.shields.io/github/stars/paramrf/paramrf?style=social" align="center">
 - [Jaxpot](https://github.com/bards-ai/Jaxpot) - Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation. <img src="https://img.shields.io/github/stars/bards-ai/Jaxpot?style=social" align="center">
+- [neojax](https://github.com/paulgekeler/neojax) - Neural Operators in JAX. <img src="https://img.shields.io/github/stars/paulgekeler/neojax?style=social" align="center">
 
 
 ### Inactive Libraries
