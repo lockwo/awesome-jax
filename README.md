@@ -145,6 +145,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [mutax](https://github.com/gerlero/mutax) - SciPy-like differential evolution optimization in JAX. <img src="https://img.shields.io/github/stars/gerlero/mutax?style=social" align="center">
 - [diffraxtra](https://github.com/GalacticDynamics/diffraxtra) - Extras for Diffrax: OOP and vectorization. <img src="https://img.shields.io/github/stars/GalacticDynamics/diffraxtra?style=social" align="center">
 - [neojax](https://github.com/paulgekeler/neojax) - Neural Operators in JAX. <img src="https://img.shields.io/github/stars/paulgekeler/neojax?style=social" align="center">
+- [SPOMSO](https://github.com/peterropac/Aegolius) - Signed Distance Function (SDF) based Python package for procedural construction of geometry. <img src="https://img.shields.io/github/stars/peterropac/Aegolius?style=social" align="center">
 
 
 ### Inactive Libraries
