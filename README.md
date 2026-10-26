@@ -23,6 +23,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - Neural Network Libraries
     - [Flax](https://github.com/google/flax) - Flax is a neural network library for JAX that is designed for flexibility. <img src="https://img.shields.io/github/stars/google/flax?style=social" align="center">
     - [Equinox](https://github.com/patrick-kidger/equinox) - Elegant easy-to-use neural networks + scientific computing in JAX. <img src="https://img.shields.io/github/stars/patrick-kidger/equinox?style=social" align="center">
+    - [Dense-Armor](https://github.com/tatopenn-cell/Dense-Armor) - A Python library on JAX for online learning on robot, vision and AI streams, with streaming statistics, drift and anomaly detection.
 
 
 - Reinforcement Learning Libraries
