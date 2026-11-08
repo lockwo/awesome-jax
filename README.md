@@ -136,6 +136,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [ParamRF](https://github.com/paramrf/paramrf) - Parametric Radio Frequency Modelling, Fitting and Sampling. <img src="https://img.shields.io/github/stars/paramrf/paramrf?style=social" align="center">
 - [cd_dynamax](https://github.com/hd-UQ/cd_dynamax) - Extension of dynamax repo to cases with continuous-time dynamics with measurements sampled at possibly irregular discrete times. Allows generic inference of dynamical systems parameters from partial noisy observations via auto-differentiable filtering, SGD, and HMC. <img src="https://img.shields.io/github/stars/hd-UQ/cd_dynamax?style=social" align="center">
 - [traceax](https://github.com/mancusolab/traceax) - Stochastic trace estimation using JAX. <img src="https://img.shields.io/github/stars/mancusolab/traceax?style=social" align="center">
+- [Jaxonomy](https://github.com/machinavitalis/jaxonomy) - JAX-native simulation engine for hybrid dynamical systems — block-diagram modeling, ODE/DAE solvers, events, acausal physics, and end-to-end autodiff (grad/vmap/jit). <img src="https://img.shields.io/github/stars/machinavitalis/jaxonomy?style=social" align="center">
 
 ### Up and Coming Libraries
 
