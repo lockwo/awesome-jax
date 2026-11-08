@@ -1289,6 +1289,17 @@ const awesomeJaxData = [
     "lastCommit": "2025-08-20T22:53:18Z"
   },
   {
+    "name": "Jaxonomy",
+    "url": "https://github.com/machinavitalis/jaxonomy",
+    "owner": "machinavitalis",
+    "repo": "jaxonomy",
+    "description": "JAX-native simulation engine for hybrid dynamical systems — block-diagram modeling, ODE/DAE solvers, events, acausal physics, and end-to-end autodiff (grad/vmap/jit).",
+    "category": "Physics and Simulation Libraries",
+    "status": "active",
+    "stars": null,
+    "lastCommit": null
+  },
+  {
     "name": "graphax",
     "url": "https://github.com/jamielohoff/graphax",
     "owner": "jamielohoff",
