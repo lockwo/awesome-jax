@@ -871,6 +871,17 @@ const awesomeJaxData = [
     "lastCommit": "2024-02-26T03:22:21Z"
   },
   {
+    "name": "BeamZ",
+    "url": "https://github.com/beamzorg/beamz",
+    "owner": "beamzorg",
+    "repo": "beamz",
+    "description": "GPU-accelerated FDTD Python framework for 2D/3D electromagnetic simulation and photonic inverse design. Supports CUDA and multi-GPU acceleration.",
+    "category": "Other",
+    "status": "active",
+    "stars": 134,
+    "lastCommit": "2026-11-13T23:42:19Z"
+  },
+  {
     "name": "SymJAX",
     "url": "https://github.com/SymJAX/SymJAX",
     "owner": "SymJAX",
@@ -1322,6 +1333,17 @@ const awesomeJaxData = [
     "lastCommit": "2026-11-12T12:10:38Z"
   },
   {
+    "name": "SPOMSO",
+    "url": "https://github.com/peterropac/Aegolius",
+    "owner": "peterropac",
+    "repo": "Aegolius",
+    "description": "Signed Distance Function (SDF) based Python package for procedural construction of geometry.",
+    "category": "Other",
+    "status": "up-and-coming",
+    "stars": 15,
+    "lastCommit": "2026-09-26T15:35:11Z"
+  },
+  {
     "name": "jumpax",
     "url": "https://github.com/lockwo/jumpax",
     "owner": "lockwo",
@@ -1368,13 +1390,13 @@ const awesomeJaxData = [
 ];
 
 const awesomeJaxMeta = {
-  "generatedAt": "2026-11-16T19:41:27.321Z",
-  "metadataAsOf": "2026-11-16T19:40:05.693Z",
-  "total": 124,
-  "active": 77,
-  "upAndComing": 12,
+  "generatedAt": "2026-11-16T19:43:28.567Z",
+  "metadataAsOf": "2026-11-16T19:43:27.706Z",
+  "total": 126,
+  "active": 78,
+  "upAndComing": 13,
   "inactive": 35,
-  "categories": 20
+  "categories": 21
 };
 
 if (typeof window !== 'undefined') {

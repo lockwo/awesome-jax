@@ -103,6 +103,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [JAXFLUIDS](https://github.com/tumaer/JAXFLUIDS) - Differentiable Fluid Dynamics Package. <img src="https://img.shields.io/github/stars/tumaer/JAXFLUIDS?style=social" align="center">
 - [klujax](https://github.com/flaport/klujax) - Solve sparse linear systems in JAX using the KLU algorithm. <img src="https://img.shields.io/github/stars/flaport/klujax?style=social" align="center">
 - [coreax](https://github.com/gchq/coreax) - A library for coreset algorithms, written in Jax for fast execution and GPU support. <img src="https://img.shields.io/github/stars/gchq/coreax?style=social" align="center">
+- [BeamZ](https://github.com/beamzorg/beamz) - GPU-accelerated FDTD Python framework for 2D/3D electromagnetic simulation and photonic inverse design. Supports CUDA and multi-GPU acceleration. <img src="https://img.shields.io/github/stars/beamzorg/beamz?style=social" align="center">
 - [fdtdx](https://github.com/ymahlau/fdtdx) - Electromagnetic FDTD Simulations in JAX. <img src="https://img.shields.io/github/stars/ymahlau/fdtdx?style=social" align="center">
 - [Jaxley](https://github.com/jaxleyverse/jaxley) - Differentiable neuron simulations with biophysical detail on CPU, GPU, or TPU. <img src="https://img.shields.io/github/stars/jaxleyverse/jaxley?style=social" align="center">
 - [torch2jax](https://github.com/rdyro/torch2jax) - Wraps PyTorch code in a JIT-compatible way for JAX. Supports automatically defining gradients for reverse-mode AutoDiff. <img src="https://img.shields.io/github/stars/rdyro/torch2jax?style=social" align="center">
@@ -132,6 +133,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [mutax](https://github.com/gerlero/mutax) - SciPy-like differential evolution optimization in JAX. <img src="https://img.shields.io/github/stars/gerlero/mutax?style=social" align="center">
 - [diffraxtra](https://github.com/GalacticDynamics/diffraxtra) - Extras for Diffrax: OOP and vectorization. <img src="https://img.shields.io/github/stars/GalacticDynamics/diffraxtra?style=social" align="center">
 - [neojax](https://github.com/paulgekeler/neojax) - Neural Operators in JAX. <img src="https://img.shields.io/github/stars/paulgekeler/neojax?style=social" align="center">
+- [SPOMSO](https://github.com/peterropac/Aegolius) - Signed Distance Function (SDF) based Python package for procedural construction of geometry. <img src="https://img.shields.io/github/stars/peterropac/Aegolius?style=social" align="center">
 
 
 ### Inactive Libraries
