@@ -27,15 +27,12 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 
 - Reinforcement Learning Libraries
     - [JaxMARL](https://github.com/FLAIROx/JaxMARL) - Multi-Agent Reinforcement Learning with JAX. <img src="https://img.shields.io/github/stars/FLAIROx/JaxMARL?style=social" align="center">
-    - [ksim](https://github.com/kscalelabs/ksim) - RL training library for humanoid locomotion and manipulation. Built on top of MuJoCo and JAX. <img src="https://img.shields.io/github/stars/kscalelabs/ksim?style=social" align="center">
     - Algorithms
         - [cleanrl](https://github.com/vwxyzjn/cleanrl) - High-quality single file implementation of Deep Reinforcement Learning algorithms with research-friendly features (PPO, DQN, C51, DDPG, TD3, SAC, PPG). <img src="https://img.shields.io/github/stars/vwxyzjn/cleanrl?style=social" align="center">
         - [rlax](https://github.com/google-deepmind/rlax) - a library built on top of JAX that exposes useful building blocks for implementing reinforcement learning agents. <img src="https://img.shields.io/github/stars/google-deepmind/rlax?style=social" align="center">
-        - [purejaxrl](https://github.com/luchris429/purejaxrl) - Really Fast End-to-End Jax RL Implementations. <img src="https://img.shields.io/github/stars/luchris429/purejaxrl?style=social" align="center">
         - [Mava](https://github.com/instadeepai/Mava) - 🦁 A research-friendly codebase for fast experimentation of multi-agent reinforcement learning in JAX. <img src="https://img.shields.io/github/stars/instadeepai/Mava?style=social" align="center">
         - [Stoix](https://github.com/EdanToledo/Stoix) - 🏛️A research-friendly codebase for fast experimentation of single-agent reinforcement learning in JAX • End-to-End JAX RL. <img src="https://img.shields.io/github/stars/EdanToledo/Stoix?style=social" align="center">
     - Environments
-        - [pgx](https://github.com/sotetsuk/pgx) - Vectorized RL game environments in JAX. <img src="https://img.shields.io/github/stars/sotetsuk/pgx?style=social" align="center">
         - [jumanji](https://github.com/instadeepai/jumanji) - 🕹️ A diverse suite of scalable reinforcement learning environments in JAX. <img src="https://img.shields.io/github/stars/instadeepai/jumanji?style=social" align="center">
         - [gymnax](https://github.com/RobertTLange/gymnax) - RL Environments in JAX 🌍. <img src="https://img.shields.io/github/stars/RobertTLange/gymnax?style=social" align="center">
         - [brax](https://github.com/google/brax) - Massively parallel rigidbody physics simulation on accelerator hardware. <img src="https://img.shields.io/github/stars/google/brax?style=social" align="center">
@@ -47,9 +44,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 
 
 - Natural Language Processing Libraries
-    - [levanter](https://github.com/marin-community/levanter) - Legible, Scalable, Reproducible Foundation Models with Named Tensors and Jax. <img src="https://img.shields.io/github/stars/marin-community/levanter?style=social" align="center">
     - [maxtext](https://github.com/AI-Hypercomputer/maxtext) - A simple, performant and scalable Jax LLM! <img src="https://img.shields.io/github/stars/AI-Hypercomputer/maxtext?style=social" align="center">
-    - [EasyLM](https://github.com/young-geng/EasyLM) - Large language models (LLMs) made easy, EasyLM is a one stop solution for pre-training, finetuning, evaluating and serving LLMs in JAX/Flax. <img src="https://img.shields.io/github/stars/young-geng/EasyLM?style=social" align="center">
 
 
 - JAX Utilities Libraries
@@ -58,7 +53,6 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
     - [mpi4jax](https://github.com/mpi4jax/mpi4jax) - Zero-copy MPI communication of JAX arrays, for turbo-charged HPC applications in Python ⚡. <img src="https://img.shields.io/github/stars/mpi4jax/mpi4jax?style=social" align="center">
     - [jax-tqdm](https://github.com/jeremiecoullon/jax-tqdm) - Add a tqdm progress bar to your JAX scans and loops. <img src="https://img.shields.io/github/stars/jeremiecoullon/jax-tqdm?style=social" align="center">
     - [JAX-Toolbox](https://github.com/NVIDIA/JAX-Toolbox) - JAX Toolbox provides a public CI, Docker images for popular JAX libraries, and optimized JAX examples to simplify and enhance your JAX development experience on NVIDIA GPUs. <img src="https://img.shields.io/github/stars/NVIDIA/JAX-Toolbox?style=social" align="center">
-    - [penzai](https://github.com/google-deepmind/penzai) - A JAX research toolkit for building, editing, and visualizing neural networks. <img src="https://img.shields.io/github/stars/google-deepmind/penzai?style=social" align="center">
     - [orbax](https://github.com/google/orbax) - Orbax provides common checkpointing and persistence utilities for JAX users. <img src="https://img.shields.io/github/stars/google/orbax?style=social" align="center">
 
 
@@ -94,22 +88,16 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [qujax](https://github.com/Quantinuum/qujax) - Simulating quantum circuits with JAX. <img src="https://img.shields.io/github/stars/Quantinuum/qujax?style=social" align="center">
 - [scico](https://github.com/lanl/scico) - Scientific Computational Imaging COde. <img src="https://img.shields.io/github/stars/lanl/scico?style=social" align="center">
 - [exojax](https://github.com/HajimeKawahara/exojax) - 🐈 Automatic differentiable spectrum modeling of exoplanets/brown dwarfs using JAX, compatible with NumPyro and Optax/JAXopt. <img src="https://img.shields.io/github/stars/HajimeKawahara/exojax?style=social" align="center">
-- [PGMax](https://github.com/google-deepmind/PGMax) - Loopy belief propagation for factor graphs on discrete variables in JAX. <img src="https://img.shields.io/github/stars/google-deepmind/PGMax?style=social" align="center">
 - [evosax](https://github.com/RobertTLange/evosax) - Evolution Strategies in JAX 🦎. <img src="https://img.shields.io/github/stars/RobertTLange/evosax?style=social" align="center">
-- [evojax](https://github.com/google/evojax) - EvoJAX is a scalable, general purpose, hardware-accelerated neuroevolution toolkit. Built on top of the JAX library, this toolkit enables neuroevolution algorithms to work with neural networks running in parallel across multiple TPU/GPUs. <img src="https://img.shields.io/github/stars/google/evojax?style=social" align="center">
 - [mctx](https://github.com/google-deepmind/mctx) - Monte Carlo tree search in JAX. <img src="https://img.shields.io/github/stars/google-deepmind/mctx?style=social" align="center">
 - [kfac-jax](https://github.com/google-deepmind/kfac-jax) - Second Order Optimization and Curvature Estimation with K-FAC in JAX. <img src="https://img.shields.io/github/stars/google-deepmind/kfac-jax?style=social" align="center">
 - [jwave](https://github.com/ucl-bug/jwave) - A JAX-based research framework for differentiable and parallelizable acoustic simulations, on CPU, GPUs and TPUs. <img src="https://img.shields.io/github/stars/ucl-bug/jwave?style=social" align="center">
-- [jax_cosmo](https://github.com/DifferentiableUniverseInitiative/jax_cosmo) - A differentiable cosmology library in JAX. <img src="https://img.shields.io/github/stars/DifferentiableUniverseInitiative/jax_cosmo?style=social" align="center">
-- [jaxlie](https://github.com/brentyi/jaxlie) - Rigid transforms + Lie groups in JAX. <img src="https://img.shields.io/github/stars/brentyi/jaxlie?style=social" align="center">
 - [ott](https://github.com/ott-jax/ott) - Optimal transport tools implemented with the JAX framework, to get differentiable, parallel and jit-able computations. <img src="https://img.shields.io/github/stars/ott-jax/ott?style=social" align="center">
 - [XLB](https://github.com/Autodesk/XLB) - XLB: Accelerated Lattice Boltzmann (XLB) for Physics-based ML. <img src="https://img.shields.io/github/stars/Autodesk/XLB?style=social" align="center">
 - [EasyDeL](https://github.com/erfanzar/EasyDeL) - Accelerate, Optimize performance with streamlined training and serving options with JAX. <img src="https://img.shields.io/github/stars/erfanzar/EasyDeL?style=social" align="center">
-- [QDax](https://github.com/adaptive-intelligent-robotics/QDax) - Accelerated Quality-Diversity. <img src="https://img.shields.io/github/stars/adaptive-intelligent-robotics/QDax?style=social" align="center">
 - [paxml](https://github.com/google/paxml) - Pax is a Jax-based machine learning framework for training large scale models. Pax allows for advanced and fully configurable experimentation and parallelization, and has demonstrated industry leading model flop utilization rates. <img src="https://img.shields.io/github/stars/google/paxml?style=social" align="center">
 - [econpizza](https://github.com/gboehl/econpizza) - Solve nonlinear heterogeneous agent models. <img src="https://img.shields.io/github/stars/gboehl/econpizza?style=social" align="center">
 - [fedjax](https://github.com/google/fedjax) - FedJAX is a JAX-based open source library for Federated Learning simulations that emphasizes ease-of-use in research. <img src="https://img.shields.io/github/stars/google/fedjax?style=social" align="center">
-- [neural-tangents](https://github.com/google/neural-tangents) - Fast and Easy Infinite Neural Networks in Python. <img src="https://img.shields.io/github/stars/google/neural-tangents?style=social" align="center">
 - [jax-fem](https://github.com/deepmodeling/jax-fem) - Differentiable Finite Element Method with JAX. <img src="https://img.shields.io/github/stars/deepmodeling/jax-fem?style=social" align="center">
 - [veros](https://github.com/team-ocean/veros) - The versatile ocean simulator, in pure Python, powered by JAX. <img src="https://img.shields.io/github/stars/team-ocean/veros?style=social" align="center">
 - [JAXFLUIDS](https://github.com/tumaer/JAXFLUIDS) - Differentiable Fluid Dynamics Package. <img src="https://img.shields.io/github/stars/tumaer/JAXFLUIDS?style=social" align="center">
@@ -118,26 +106,25 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 - [fdtdx](https://github.com/ymahlau/fdtdx) - Electromagnetic FDTD Simulations in JAX. <img src="https://img.shields.io/github/stars/ymahlau/fdtdx?style=social" align="center">
 - [Jaxley](https://github.com/jaxleyverse/jaxley) - Differentiable neuron simulations with biophysical detail on CPU, GPU, or TPU. <img src="https://img.shields.io/github/stars/jaxleyverse/jaxley?style=social" align="center">
 - [torch2jax](https://github.com/rdyro/torch2jax) - Wraps PyTorch code in a JIT-compatible way for JAX. Supports automatically defining gradients for reverse-mode AutoDiff. <img src="https://img.shields.io/github/stars/rdyro/torch2jax?style=social" align="center">
-- [cola](https://github.com/wilson-labs/cola) - Compositional Linear Algebra.  <img src="https://img.shields.io/github/stars/wilson-labs/cola?style=social" align="center">
 - [laplax](https://github.com/laplax-org/laplax) - Laplace approximations in JAX. <img src="https://img.shields.io/github/stars/laplax-org/laplax?style=social" align="center">
 - [thrml](https://github.com/extropic-ai/thrml) - Thermodynamic Hypergraphical Model Library. <img src="https://img.shields.io/github/stars/extropic-ai/thrml?style=social" align="center">
 - [astronomix](https://github.com/leo1200/astronomix) - differentiable (magneto)hydrodynamics for astrophysics in JAX. <img src="https://img.shields.io/github/stars/leo1200/astronomix?style=social" align="center">
-- [memax](https://github.com/smorad/memax) - Deep memory and sequence models in JAX. <img src="https://img.shields.io/github/stars/smorad/memax?style=social" align="center">
 - [JAXMg](https://github.com/flatironinstitute/jaxmg) - JAXMg: A multi-GPU linear solver in JAX. <img src="https://img.shields.io/github/stars/flatironinstitute/jaxmg?style=social" align="center">
 - [exponax](https://github.com/Ceyron/exponax) - Efficient Differentiable n-d PDE Solvers in JAX. <img src="https://img.shields.io/github/stars/Ceyron/exponax?style=social" align="center">
 - [paramrf](https://github.com/gvcallen/paramrf) - Parametric Radio Frequency Modeling. <img src="https://img.shields.io/github/stars/gvcallen/paramrf?style=social" align="center">
 - [haliax](https://github.com/marin-community/haliax) - Named Tensors for Legible Deep Learning in JAX. <img src="https://img.shields.io/github/stars/marin-community/haliax?style=social" align="center">
 - [unxt](https://github.com/GalacticDynamics/unxt) - Unitful Quantities in JAX. <img src="https://img.shields.io/github/stars/GalacticDynamics/unxt?style=social" align="center">
-- [coordinax](https://github.com/GalacticDynamics/coordinax) - Coordinates in JAX. <img src="https://img.shields.io/github/stars/GalacticDynamics/coordinax?style=social" align="center">
 - [galax](https://github.com/GalacticDynamics/galax) - Galactic and Gravitational Dynamics in Python (+ GPU and autodiff). <img src="https://img.shields.io/github/stars/GalacticDynamics/galax?style=social" align="center">
 - [tensorcircuit-ng](https://github.com/tensorcircuit/tensorcircuit-ng) - Differentiable tensor-network-based quantum software framework. <img src="https://img.shields.io/github/stars/tensorcircuit/tensorcircuit-ng?style=social" align="center">
-- [Jaxpot](https://github.com/bards-ai/Jaxpot) - Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation. <img src="https://img.shields.io/github/stars/bards-ai/Jaxpot?style=social" align="center">
 - [ParamRF](https://github.com/paramrf/paramrf) - Parametric Radio Frequency Modelling, Fitting and Sampling. <img src="https://img.shields.io/github/stars/paramrf/paramrf?style=social" align="center">
-- [cd_dynamax](https://github.com/hd-UQ/cd_dynamax) - Extension of dynamax repo to cases with continuous-time dynamics with measurements sampled at possibly irregular discrete times. Allows generic inference of dynamical systems parameters from partial noisy observations via auto-differentiable filtering, SGD, and HMC. <img src="https://img.shields.io/github/stars/hd-UQ/cd_dynamax?style=social" align="center">
-- [traceax](https://github.com/mancusolab/traceax) - Stochastic trace estimation using JAX. <img src="https://img.shields.io/github/stars/mancusolab/traceax?style=social" align="center">
 
 ### Up and Coming Libraries
 
+- [memax](https://github.com/smorad/memax) - Deep memory and sequence models in JAX. <img src="https://img.shields.io/github/stars/smorad/memax?style=social" align="center">
+- [coordinax](https://github.com/GalacticDynamics/coordinax) - Coordinates in JAX. <img src="https://img.shields.io/github/stars/GalacticDynamics/coordinax?style=social" align="center">
+- [Jaxpot](https://github.com/bards-ai/Jaxpot) - Distributed JAX self-play training for pgx environments - PPO, league play, baseline evaluation. <img src="https://img.shields.io/github/stars/bards-ai/Jaxpot?style=social" align="center">
+- [cd_dynamax](https://github.com/hd-UQ/cd_dynamax) - Extension of dynamax repo to cases with continuous-time dynamics with measurements sampled at possibly irregular discrete times. Allows generic inference of dynamical systems parameters from partial noisy observations via auto-differentiable filtering, SGD, and HMC. <img src="https://img.shields.io/github/stars/hd-UQ/cd_dynamax?style=social" align="center">
+- [traceax](https://github.com/mancusolab/traceax) - Stochastic trace estimation using JAX. <img src="https://img.shields.io/github/stars/mancusolab/traceax?style=social" align="center">
 - [graphax](https://github.com/jamielohoff/graphax) - Cross-Country Elimination in JAX. <img src="https://img.shields.io/github/stars/jamielohoff/graphax?style=social" align="center">
 - [jumpax](https://github.com/lockwo/jumpax) - Jump Processes in JAX. <img src="https://img.shields.io/github/stars/lockwo/jumpax?style=social" align="center">
 - [driftax](https://github.com/wrkhard/driftax) - Drifting Generative Models - JAX/Flax implmentation of [Generative Modeling via Drifting](https://arxiv.org/abs/2602.04770). <img src="https://img.shields.io/github/stars/wrkhard/driftax?style=social" align="center">
@@ -149,6 +136,19 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
 
 ### Inactive Libraries
 
+- [ksim](https://github.com/kscalelabs/ksim) - RL training library for humanoid locomotion and manipulation. Built on top of MuJoCo and JAX. <img src="https://img.shields.io/github/stars/kscalelabs/ksim?style=social" align="center">
+- [purejaxrl](https://github.com/luchris429/purejaxrl) - Really Fast End-to-End Jax RL Implementations. <img src="https://img.shields.io/github/stars/luchris429/purejaxrl?style=social" align="center">
+- [pgx](https://github.com/sotetsuk/pgx) - Vectorized RL game environments in JAX. <img src="https://img.shields.io/github/stars/sotetsuk/pgx?style=social" align="center">
+- [levanter](https://github.com/marin-community/levanter) - Legible, Scalable, Reproducible Foundation Models with Named Tensors and Jax. <img src="https://img.shields.io/github/stars/marin-community/levanter?style=social" align="center">
+- [EasyLM](https://github.com/young-geng/EasyLM) - Large language models (LLMs) made easy, EasyLM is a one stop solution for pre-training, finetuning, evaluating and serving LLMs in JAX/Flax. <img src="https://img.shields.io/github/stars/young-geng/EasyLM?style=social" align="center">
+- [penzai](https://github.com/google-deepmind/penzai) - A JAX research toolkit for building, editing, and visualizing neural networks. <img src="https://img.shields.io/github/stars/google-deepmind/penzai?style=social" align="center">
+- [PGMax](https://github.com/google-deepmind/PGMax) - Loopy belief propagation for factor graphs on discrete variables in JAX. <img src="https://img.shields.io/github/stars/google-deepmind/PGMax?style=social" align="center">
+- [evojax](https://github.com/google/evojax) - EvoJAX is a scalable, general purpose, hardware-accelerated neuroevolution toolkit. Built on top of the JAX library, this toolkit enables neuroevolution algorithms to work with neural networks running in parallel across multiple TPU/GPUs. <img src="https://img.shields.io/github/stars/google/evojax?style=social" align="center">
+- [jax_cosmo](https://github.com/DifferentiableUniverseInitiative/jax_cosmo) - A differentiable cosmology library in JAX. <img src="https://img.shields.io/github/stars/DifferentiableUniverseInitiative/jax_cosmo?style=social" align="center">
+- [jaxlie](https://github.com/brentyi/jaxlie) - Rigid transforms + Lie groups in JAX. <img src="https://img.shields.io/github/stars/brentyi/jaxlie?style=social" align="center">
+- [QDax](https://github.com/adaptive-intelligent-robotics/QDax) - Accelerated Quality-Diversity. <img src="https://img.shields.io/github/stars/adaptive-intelligent-robotics/QDax?style=social" align="center">
+- [neural-tangents](https://github.com/google/neural-tangents) - Fast and Easy Infinite Neural Networks in Python. <img src="https://img.shields.io/github/stars/google/neural-tangents?style=social" align="center">
+- [cola](https://github.com/wilson-labs/cola) - Compositional Linear Algebra.  <img src="https://img.shields.io/github/stars/wilson-labs/cola?style=social" align="center">
 - [Haiku](https://github.com/google-deepmind/dm-haiku) - JAX-based neural network library. <img src="https://img.shields.io/github/stars/google-deepmind/dm-haiku?style=social" align="center">
 - [jraph](https://github.com/google-deepmind/jraph) - A Graph Neural Network Library in Jax. <img src="https://img.shields.io/github/stars/google-deepmind/jraph?style=social" align="center">
 - [SymJAX](https://github.com/SymJAX/SymJAX) - symbolic CPU/GPU/TPU programming. <img src="https://img.shields.io/github/stars/SymJAX/SymJAX?style=social" align="center">
