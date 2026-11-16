@@ -60,6 +60,7 @@ Why do we need another "awesome-jax" list? Existing ones are inactive, and this 
     - [JAX-Toolbox](https://github.com/NVIDIA/JAX-Toolbox) - JAX Toolbox provides a public CI, Docker images for popular JAX libraries, and optimized JAX examples to simplify and enhance your JAX development experience on NVIDIA GPUs. <img src="https://img.shields.io/github/stars/NVIDIA/JAX-Toolbox?style=social" align="center">
     - [penzai](https://github.com/google-deepmind/penzai) - A JAX research toolkit for building, editing, and visualizing neural networks. <img src="https://img.shields.io/github/stars/google-deepmind/penzai?style=social" align="center">
     - [orbax](https://github.com/google/orbax) - Orbax provides common checkpointing and persistence utilities for JAX users. <img src="https://img.shields.io/github/stars/google/orbax?style=social" align="center">
+    - [jax2onnx](https://github.com/enpasos/jax2onnx) - Export JAX to ONNX. <img src="https://img.shields.io/github/stars/enpasos/jax2onnx?style=social" align="center">
 
 
 - Computer Vision Libraries
